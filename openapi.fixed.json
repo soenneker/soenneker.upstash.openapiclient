@@ -1,0 +1,6102 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Developer API - Upstash",
+    "description": "This is a documentation to specify Developer API endpoints based on the OpenAPI 3.0 specification.",
+    "contact": {
+      "name": "Support Team",
+      "email": "support@upstash.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.upstash.com/v2"
+    }
+  ],
+  "paths": {
+    "/redis/databases": {
+      "get": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "List Databases",
+        "description": "This endpoint list all databases of user.",
+        "operationId": "ListDatabases",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListDatabases200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/database/{id}": {
+      "get": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Get Database",
+        "description": "This endpoint gets details of a database.",
+        "operationId": "GetDatabase",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "credentials",
+            "in": "query",
+            "description": "Set to \u0027hide\u0027 to remove credentials from the response.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Database"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Delete Database",
+        "description": "This endpoint deletes a database.",
+        "operationId": "DeleteDatabase",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteDatabase200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/database": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Create Redis Database",
+        "description": "This endpoint creates a new Redis database.\n\nTo create a database manually, you can use the [Upstash Console](https://console.upstash.com/redis).\n\nFor a quick development database, POST to https://upstash.com/start-redis \u2014 no signup or API key, so an AI agent can provision one unattended. Expires in 72 hours unless claimed. If you are an agent, always send a \u0060User-Agent\u0060 header identifying which agent you are (e.g. \u0060claude-code\u0060, \u0060cursor\u0060, \u0060codex\u0060, \u0060opencode\u0060) on every request you make to this API.\n",
+        "operationId": "CreateDatabase",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDatabaseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Database created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Database"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/rename/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Rename Database",
+        "description": "This endpoint renames a database.",
+        "operationId": "RenameDatabase",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database to be renamed",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RenameDatabaseRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Database renamed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Database"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/reset-password/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Reset Password",
+        "description": "This endpoint updates the password of a database.",
+        "operationId": "ResetPassword",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database to reset password",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Password reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Database"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/enable-tls/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Enable TLS",
+        "description": "This endpoint enables tls on a database.",
+        "operationId": "EnableTls",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database to enable TLS",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TLS enabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Database"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/enable-eviction/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Enable Eviction",
+        "description": "This endpoint enables eviction for given database.",
+        "operationId": "EnableEviction",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database to enable eviction",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eviction enabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnableEviction200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/disable-eviction/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Disable Eviction",
+        "description": "This endpoint disables eviction for given database.",
+        "operationId": "DisableEviction",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database to disable eviction",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Eviction disabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DisableEviction200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/enable-autoupgrade/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Enable Auto Upgrade",
+        "description": "This endpoint enables Auto Upgrade for given database.",
+        "operationId": "EnableAutoUpgrade",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database to enable auto upgrade",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Auto upgrade enabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnableAutoUpgrade200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/disable-autoupgrade/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Disable Auto Upgrade",
+        "description": "This endpoint disables Auto Upgrade for given database.",
+        "operationId": "DisableAutoUpgrade",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database to disable auto upgrade",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Auto upgrade disabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DisableAutoUpgrade200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/{id}/change-plan": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Change Database Plan",
+        "description": "This endpoint changes the plan of a Redis database.",
+        "operationId": "ChangePlan",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database whose plan will be changed",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangePlanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Plan changed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ChangePlan200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/update-budget/{id}": {
+      "patch": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Update Database Budget",
+        "description": "This endpoint updates the monthly budget of a Redis database.",
+        "operationId": "UpdateBudget",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database whose budget will be updated",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBudgetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Budget updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateBudget200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/update-regions/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Update Regions",
+        "description": "Update the regions of a database",
+        "operationId": "UpdateRegions",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of your database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRegionsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Regions updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateRegions200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/move-to-team": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Move To Team",
+        "description": "This endpoint moves database under a target team",
+        "operationId": "MoveToTeam",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MoveToTeamRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Database moved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MoveToTeam200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/stats/{id}": {
+      "get": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Get Database Stats",
+        "description": "This endpoint gets detailed stats of a database.",
+        "operationId": "GetDatabaseStats",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Database stats retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DatabaseStats"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/list-backup/{id}": {
+      "get": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "List Backup",
+        "description": "This endpoint lists all backups for a Redis database.",
+        "operationId": "ListBackup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the Redis database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Backups retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListBackup200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/create-backup/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Create Backup",
+        "description": "This endpoint creates a backup for a Redis database.",
+        "operationId": "CreateBackup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the Redis database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateBackupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Backup created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateBackup200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/delete-backup/{id}/{backupId}": {
+      "delete": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Delete Backup",
+        "description": "This endpoint deletes a backup of a Redis database.",
+        "operationId": "DeleteBackup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the Redis database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "backupId",
+            "in": "path",
+            "description": "The ID of the backup to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Backup deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteBackup200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/restore-backup/{id}": {
+      "post": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Restore Backup",
+        "description": "This endpoint restores data from an existing backup.",
+        "operationId": "RestoreBackup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the Redis database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RestoreBackupRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Backup restored successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RestoreBackup200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/enable-dailybackup/{id}": {
+      "patch": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Enable Daily Backup",
+        "description": "This endpoint enables daily backup for a Redis database.",
+        "operationId": "EnableDailyBackup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the Redis database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Daily backup enabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnableDailyBackup200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/redis/disable-dailybackup/{id}": {
+      "patch": {
+        "tags": [
+          "redis"
+        ],
+        "summary": "Disable Daily Backup",
+        "description": "This endpoint disables daily backup for a Redis database.",
+        "operationId": "DisableDailyBackup",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the Redis database",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Daily backup disabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DisableDailyBackup200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/teams": {
+      "get": {
+        "tags": [
+          "teams"
+        ],
+        "summary": "List Teams",
+        "description": "This endpoint lists all teams of user.",
+        "operationId": "ListTeams",
+        "responses": {
+          "200": {
+            "description": "Teams retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListTeams200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/auditlogs": {
+      "get": {
+        "tags": [
+          "auditlogs"
+        ],
+        "summary": "List Audit Logs",
+        "description": "This endpoint lists all audit logs of user.",
+        "operationId": "ListAuditLogs",
+        "responses": {
+          "200": {
+            "description": "Audit logs retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAuditLogs200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "servers": [
+        {
+          "url": "https://api.upstash.com"
+        }
+      ]
+    },
+    "/team": {
+      "post": {
+        "tags": [
+          "teams"
+        ],
+        "summary": "Create Team",
+        "description": "This endpoint creates a new team.",
+        "operationId": "CreateTeam",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTeamRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Team created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Team"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/team/{id}": {
+      "delete": {
+        "tags": [
+          "teams"
+        ],
+        "summary": "Delete Team",
+        "description": "This endpoint deletes a team.",
+        "operationId": "DeleteTeam",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the team to delete",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTeam200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}": {
+      "get": {
+        "tags": [
+          "teams"
+        ],
+        "summary": "Get Team Members",
+        "description": "This endpoint list all members of a team.",
+        "operationId": "GetTeamMembers",
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "description": "ID of the team",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team members retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTeamMembers200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/teams/member": {
+      "post": {
+        "tags": [
+          "teams"
+        ],
+        "summary": "Add Team Member",
+        "description": "This endpoint adds a new team member to the specified team.",
+        "operationId": "AddTeamMember",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddTeamMemberRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Team member added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TeamMember"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "teams"
+        ],
+        "summary": "Delete Team Member",
+        "description": "This endpoint deletes a team member from the specified team.",
+        "operationId": "DeleteTeamMember",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteTeamMemberRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Team member deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTeamMember200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/vector/index": {
+      "get": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "List Indices",
+        "description": "This endpoint returns the data related to all indices of an account as a list.",
+        "operationId": "ListIndices",
+        "responses": {
+          "200": {
+            "description": "Indices retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListIndices200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Create Index",
+        "description": "This endpoint creates an index.",
+        "operationId": "CreateIndex",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIndexRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Index created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VectorIndex"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/vector/index/{id}": {
+      "get": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Get Index",
+        "description": "This endpoint returns the data associated to a index.",
+        "operationId": "GetIndex",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the index to fetch",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Index retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VectorIndex"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Delete Index",
+        "description": "This endpoint deletes an index.",
+        "operationId": "DeleteIndex",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the index to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Index deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteIndex200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/vector/index/{id}/rename": {
+      "post": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Rename Index",
+        "description": "This endpoint is used to change the name of an index.",
+        "operationId": "RenameIndex",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the index to be renamed",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RenameIndexRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Index renamed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RenameIndex200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/vector/index/{id}/reset-password": {
+      "post": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Reset Index Passwords",
+        "description": "This endpoint is used to reset regular and readonly tokens of an index.",
+        "operationId": "ResetIndexPasswords",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the index to reset the password for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Index passwords reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetIndexPasswords200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/vector/index/{id}/setplan": {
+      "post": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Set Index Plan",
+        "description": "This endpoint is used to change the plan of an index.",
+        "operationId": "SetIndexPlan",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the index to change plan for",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetIndexPlanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Index plan changed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetIndexPlan200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/vector/index/{id}/transfer": {
+      "post": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Transfer Index",
+        "description": "This endpoint is used to transfer an index to another team. \nTransferring to a personal account is not supported. However, transferring an index from a personal account to a team is allowed.\n",
+        "operationId": "TransferIndex",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the index to be transferred",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferIndexRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Index transferred successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferIndex200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/vector/index/stats": {
+      "get": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Get Vector Stats",
+        "description": "Get vector statistics for all the vector indices associated with the authenticated user",
+        "operationId": "GetGlobalVectorStats",
+        "responses": {
+          "200": {
+            "description": "Statistics for the vector indices retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalStats"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/vector/index/{id}/stats": {
+      "get": {
+        "tags": [
+          "vector"
+        ],
+        "summary": "Get Index Stats",
+        "description": "Retrieves statistics and metrics for a specific vector index",
+        "operationId": "GetVectorIndexStats",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the vector index",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "description": "Time period for statistics aggregation. Each period returns 60 datapoints \nwith intervals adjusted to the period length. \n\nExceptionally for 30 days, it returns 240 datapoints with 3-hour intervals for increased granularity.\n",
+            "schema": {
+              "$ref": "#/components/schemas/GetVectorIndexStatsPeriodParameter"
+            },
+            "example": "3h"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Statistics for the specified vector index retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VectorStats"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/search": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "List Search Indexes",
+        "description": "Returns a list of all search indices belonging to the authenticated user.",
+        "operationId": "ListSearchIndexes",
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list of search indices.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListSearchIndexes200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Create Search Index",
+        "description": "Creates a new search index with the specified configuration",
+        "operationId": "CreateSearchIndex",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSearchIndexRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Index created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchIndex"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/search/{id}": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Get Search Index",
+        "description": "Retrieves detailed information about a specific search index",
+        "operationId": "GetSearchIndex",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the search index to be retrieved",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved specified search index",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchIndex"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Delete Search Index",
+        "description": "Permanently deletes a search index and all its data",
+        "operationId": "DeleteSearchIndex",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The unique ID of the search index to be deleted",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search Index Deleted Successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteSearchIndex200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/search/stats": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Get Search Stats",
+        "description": "Get search statistics for all the search indices associated with the authenticated user",
+        "operationId": "GetGlobalSearchStats",
+        "responses": {
+          "200": {
+            "description": "Statistics for the search indices retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GlobalStats"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/search/{id}/stats": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Get Index Stats",
+        "description": "Retrieves statistics and metrics for a specific search index",
+        "operationId": "GetSearchIndexStats",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the search index",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "description": "Time period for statistics aggregation. Each period returns 60 datapoints \nwith intervals adjusted to the period length. \n\nExceptionally for 30 days, it returns 240 datapoints with 3-hour intervals for increased granularity.\n",
+            "schema": {
+              "$ref": "#/components/schemas/GetSearchIndexStatsPeriodParameter"
+            },
+            "example": "3h"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Statistics for the specified search index retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VectorStats"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/search/{id}/reset-password": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Reset Password",
+        "description": "This endpoint resets the regular and readonly tokens of a search index.",
+        "operationId": "ResetSearchPassword",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the search index",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search index passwords reset successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResetSearchPassword200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/search/{id}/transfer": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Transfer Search Index",
+        "description": "Transfers ownership of a search index to another team.\nTransferring to a personal account is not supported.\nHowever, transferring from a personal account to a team is allowed.\n",
+        "operationId": "TransferSearchIndex",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the search index",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TransferSearchIndexRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Search index transferred successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferSearchIndex200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/search/{id}/rename": {
+      "post": {
+        "tags": [
+          "search"
+        ],
+        "summary": "Rename Search Index",
+        "description": "Renames a search index.",
+        "operationId": "RenameSearchIndex",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ID of the search index",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RenameSearchIndexRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Search index renamed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RenameSearchIndex200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/users": {
+      "get": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "List QStash Users",
+        "description": "Retrieves a list of all QStash users associated with the account, including plan details, limits, and configuration.",
+        "operationId": "ListQStashUsers",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListQStashUsers200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/user/{id}": {
+      "get": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Get QStash",
+        "description": "Retrieves detailed information about the specified QStash user, including plan details, limits, and configuration",
+        "operationId": "GetQStashUser",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QStashUser"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/rotate-token/{id}": {
+      "post": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Reset QStash Token",
+        "description": "Resets the authentication credentials for the QStash user account.\nThis invalidates the old password and token, and generates new ones.\nReturns the updated user information with new credentials.\n",
+        "operationId": "ResetQStashToken",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Token reset successfully, returns updated user information with new credentials",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QStashUser"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/set-plan/{id}": {
+      "post": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Set QStash Plan",
+        "description": "Changes the QStash account to a different plan type.\nThis operation changes the plan and associated limits for the QStash account.\n",
+        "operationId": "SetQStashPlan",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetQStashPlanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "QStash plan changed successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SetQStashPlan200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/stats/{id}": {
+      "get": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Get QStash Stats",
+        "description": "Retrieves detailed usage statistics for the QStash account including\ndaily requests, billing, bandwidth, and workflow metrics over time.\n",
+        "operationId": "GetQStashStats",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "description": "Time period for statistics aggregation. Each period returns 60 datapoints\nwith intervals adjusted to the period length.\n\nExceptionally for 30 days, it returns 240 datapoints with 3-hour intervals for increased granularity.\n",
+            "schema": {
+              "$ref": "#/components/schemas/GetQStashStatsPeriodParameter"
+            },
+            "example": "3h"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with usage statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QStashStats"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/ipv4": {
+      "get": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Get QStash IPv4 Addresses",
+        "description": "Returns the list of IPv4 addresses used by QStash for sending requests.",
+        "operationId": "GetQStashIPv4",
+        "responses": {
+          "200": {
+            "description": "List of IPv4 CIDR blocks",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetQStashIPv4200ResponseSchema"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/qstash/move-to-team": {
+      "post": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Move QStash to Team",
+        "description": "Moves a QStash instance to a different team.",
+        "operationId": "MoveQStashToTeam",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MoveQStashToTeamRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "QStash moved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MoveQStashToTeam200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/update-budget/{id}": {
+      "patch": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Update QStash Budget",
+        "description": "Updates the monthly spending budget limit for a QStash instance.",
+        "operationId": "UpdateQStashBudget",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateQStashBudgetRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Budget updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateQStashBudget200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/enable-prodpack/{id}": {
+      "post": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Enable Production Pack",
+        "description": "Enables the production pack for a QStash instance.",
+        "operationId": "EnableQStashProdPack",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Production pack enabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EnableQStashProdPack200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/disable-prodpack/{id}": {
+      "post": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Disable Production Pack",
+        "description": "Disables the production pack for a QStash instance.",
+        "operationId": "DisableQStashProdPack",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Production pack disabled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DisableQStashProdPack200ResponseSchema"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Database": {
+        "type": "object",
+        "properties": {
+          "database_id": {
+            "type": "string",
+            "description": "ID of the database",
+            "example": "96ad0856-03b1-4ee7-9666-e81abd0349e1"
+          },
+          "database_name": {
+            "type": "string",
+            "description": "Name of the database",
+            "example": "MyRedis"
+          },
+          "region": {
+            "$ref": "#/components/schemas/GlobalRegion"
+          },
+          "port": {
+            "type": "integer",
+            "description": "Database port for clients to connect",
+            "format": "int64",
+            "example": 6379
+          },
+          "creation_time": {
+            "type": "integer",
+            "description": "Creation time of the database as Unix time",
+            "format": "int64",
+            "example": 1752649602
+          },
+          "state": {
+            "$ref": "#/components/schemas/DatabaseState"
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "Endpoint identifier or hostname of the database (may be a slug like \u0022beloved-stallion-58500\u0022 or a full host)",
+            "example": "beloved-stallion-58500"
+          },
+          "tls": {
+            "type": "boolean",
+            "description": "TLS/SSL is enabled or not",
+            "example": true
+          },
+          "db_max_clients": {
+            "type": "integer",
+            "description": "Max number of concurrent clients can be opened on this database currently",
+            "format": "int64",
+            "example": 10000
+          },
+          "db_max_request_size": {
+            "type": "integer",
+            "description": "Max size of a request that will be accepted by the database currently(in bytes)",
+            "format": "int64",
+            "example": 10485760
+          },
+          "db_disk_threshold": {
+            "type": "integer",
+            "description": "Total disk size limit that can be used for the database currently(in bytes)",
+            "format": "int64",
+            "example": 107374182400
+          },
+          "db_max_entry_size": {
+            "type": "integer",
+            "description": "Max size of an entry that will be accepted by the database currently(in bytes)",
+            "format": "int64",
+            "example": 104857600
+          },
+          "db_memory_threshold": {
+            "type": "integer",
+            "description": "Max size of a memory the database can use(in bytes)",
+            "format": "int64",
+            "example": 3221225472
+          },
+          "db_max_commands_per_second": {
+            "type": "integer",
+            "description": "Max number of commands can be sent to the database per second",
+            "format": "int64",
+            "example": 10000
+          },
+          "db_request_limit": {
+            "type": "integer",
+            "description": "Total number of commands can be sent to the database",
+            "format": "int64",
+            "example": 8024278031528736858
+          },
+          "type": {
+            "$ref": "#/components/schemas/DatabaseType"
+          },
+          "budget": {
+            "type": "integer",
+            "description": "Allocated monthly budget for the database",
+            "format": "int64",
+            "example": 360
+          },
+          "primary_region": {
+            "$ref": "#/components/schemas/DatabasePrimaryRegion"
+          },
+          "primary_members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of primary regions in the database cluster"
+          },
+          "all_members": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "List of all regions in the database cluster"
+          },
+          "eviction": {
+            "type": "boolean",
+            "description": "Entry eviction is enabled",
+            "example": false
+          },
+          "auto_upgrade": {
+            "type": "boolean",
+            "description": "Automatic upgrade capability is enabled",
+            "example": false
+          },
+          "consistent": {
+            "type": "boolean",
+            "description": "Strong consistency mode is enabled",
+            "example": false
+          },
+          "modifying_state": {
+            "type": "string",
+            "description": "Current modifying state of the database"
+          },
+          "db_resource_size": {
+            "$ref": "#/components/schemas/DatabaseDbResourceSize"
+          },
+          "db_type": {
+            "$ref": "#/components/schemas/DatabaseDbType"
+          },
+          "db_conn_idle_timeout": {
+            "type": "integer",
+            "description": "Connection idle timeout in nanoseconds",
+            "format": "int64",
+            "example": 21600000000000
+          },
+          "db_lua_timeout": {
+            "type": "integer",
+            "description": "Lua script execution timeout in nanoseconds",
+            "format": "int64",
+            "example": 250000000
+          },
+          "db_lua_credits_per_min": {
+            "type": "integer",
+            "description": "Lua script execution credits per minute",
+            "format": "int64",
+            "example": 10000000000
+          },
+          "db_store_max_idle": {
+            "type": "integer",
+            "description": "Store connection idle timeout in nanoseconds",
+            "format": "int64",
+            "example": 900000000000
+          },
+          "db_max_loads_per_sec": {
+            "type": "integer",
+            "description": "Maximum load operations per second",
+            "format": "int64",
+            "example": 1000000
+          },
+          "db_acl_enabled": {
+            "$ref": "#/components/schemas/DatabaseDbAclEnabled"
+          },
+          "db_acl_default_user_status": {
+            "$ref": "#/components/schemas/DatabaseDbAclDefaultUserStatus"
+          },
+          "db_eviction": {
+            "type": "boolean",
+            "description": "Database-level eviction policy status",
+            "example": false
+          },
+          "last_plan_upgrade_time": {
+            "type": "integer",
+            "description": "Unix timestamp of the last plan upgrade",
+            "format": "int64",
+            "example": 0
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "Replica factor of the database",
+            "example": 5
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Owner identifier of the database (may be email or marketplace-scoped email)",
+            "example": "example@upstash.com"
+          },
+          "daily_backup_enabled": {
+            "type": "boolean",
+            "description": "Whether daily backup is enabled",
+            "example": false
+          },
+          "read_regions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of read regions of the database"
+          },
+          "securityAddons": {
+            "$ref": "#/components/schemas/DatabaseSecurityAddons"
+          },
+          "prometheus_enabled": {
+            "$ref": "#/components/schemas/DatabasePrometheusEnabled"
+          },
+          "prod_pack_enabled": {
+            "type": "boolean",
+            "description": "Production pack enabled status",
+            "example": false
+          }
+        },
+        "xml": {
+          "name": "database"
+        }
+      },
+      "CreateDatabaseRequest": {
+        "required": [
+          "database_name",
+          "platform",
+          "primary_region"
+        ],
+        "type": "object",
+        "properties": {
+          "database_name": {
+            "type": "string",
+            "description": "Name of the database",
+            "example": "myredis"
+          },
+          "platform": {
+            "$ref": "#/components/schemas/CreateDatabaseRequestPlatform"
+          },
+          "primary_region": {
+            "$ref": "#/components/schemas/CreateDatabaseRequestPrimaryRegion"
+          },
+          "read_regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateDatabaseRequestReadRegionsItem"
+            },
+            "description": "Array of Read Regions of the Database"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/CreateDatabaseRequestPlan"
+          },
+          "budget": {
+            "type": "integer",
+            "description": "Monthly budget of the database",
+            "example": 360
+          },
+          "eviction": {
+            "type": "boolean",
+            "description": "Whether to enable eviction for the database",
+            "example": false
+          },
+          "tls": {
+            "type": "boolean",
+            "description": "Whether to enable TLS for the database",
+            "example": true
+          }
+        }
+      },
+      "ChangePlanRequest": {
+        "required": [
+          "plan_name"
+        ],
+        "type": "object",
+        "properties": {
+          "database_id": {
+            "type": "string",
+            "description": "ID of the database",
+            "example": "6gcefvfd-9627-2tz5-4l71-c5679g19d2g4"
+          },
+          "plan_name": {
+            "$ref": "#/components/schemas/ChangePlanRequestPlanName"
+          },
+          "auto_upgrade": {
+            "type": "boolean",
+            "description": "Whether to enable automatic upgrade for the database",
+            "example": true
+          },
+          "prod_pack_enabled": {
+            "type": "boolean",
+            "description": "Whether to enable the production pack for the database",
+            "example": false
+          }
+        }
+      },
+      "DatabaseStats": {
+        "type": "object",
+        "properties": {
+          "monitor_count": {
+            "$ref": "#/components/schemas/TimeSeriesData"
+          },
+          "daily_net_commands": {
+            "type": "integer",
+            "description": "Total number of commands executed today",
+            "example": 7
+          },
+          "daily_read_requests": {
+            "type": "integer",
+            "description": "Total number of read requests executed today",
+            "example": 7
+          },
+          "daily_write_requests": {
+            "type": "integer",
+            "description": "Total number of write requests executed today",
+            "example": 0
+          },
+          "connection_count": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Connection count over time"
+          },
+          "keyspace": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Total number of keys in the database over time"
+          },
+          "throughput": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Throughput on database connections over time"
+          },
+          "diskusage": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Disk usage over time"
+          },
+          "latencymean": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Average latency over time"
+          },
+          "latency_99": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "99th percentile latency over time"
+          },
+          "read_latency_mean": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Average read latency over time"
+          },
+          "read_latency_99": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "99th percentile read latency over time"
+          },
+          "write_latency_mean": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Average write latency over time"
+          },
+          "write_latency_99": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "99th percentile write latency over time"
+          },
+          "hits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Cache hits over time"
+          },
+          "misses": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Cache misses over time"
+          },
+          "read": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Read requests over time"
+          },
+          "write": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Write requests over time"
+          },
+          "dailyrequests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Daily requests over time"
+          },
+          "days": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Days of the week for measurement"
+          },
+          "dailybilling": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Daily billing amounts over time"
+          },
+          "dailybandwidth": {
+            "type": "integer",
+            "description": "Total daily bandwidth usage in bytes",
+            "format": "int64",
+            "example": 50444740913
+          },
+          "bandwidths": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Bandwidth usage over time"
+          },
+          "total_monthly_bandwidth": {
+            "type": "integer",
+            "description": "Total bandwidth used in current month (bytes)",
+            "example": 7
+          },
+          "total_monthly_requests": {
+            "type": "integer",
+            "description": "Total requests in current month",
+            "example": 7
+          },
+          "total_monthly_read_requests": {
+            "type": "integer",
+            "description": "Total read requests in current month",
+            "example": 7
+          },
+          "total_monthly_write_requests": {
+            "type": "integer",
+            "description": "Total write requests in current month",
+            "example": 0
+          },
+          "total_monthly_script_requests": {
+            "type": "integer",
+            "description": "Total script requests in current month",
+            "example": 0
+          },
+          "queue_optimized": {
+            "type": "boolean",
+            "description": "Whether queue optimization is enabled for the database",
+            "example": false
+          },
+          "total_monthly_storage": {
+            "type": "integer",
+            "description": "Total storage used in current month (bytes)",
+            "example": 0
+          },
+          "current_storage": {
+            "type": "integer",
+            "description": "Current storage used (bytes)",
+            "example": 0
+          },
+          "total_monthly_billing": {
+            "type": "number",
+            "description": "Total cost in current month",
+            "format": "float",
+            "example": 222.33904
+          },
+          "command_counts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommandCount"
+            },
+            "description": "Command-specific counts over time"
+          }
+        }
+      },
+      "CommandCount": {
+        "type": "object",
+        "properties": {
+          "metric_identifier": {
+            "type": "string",
+            "description": "Command name or metric identifier",
+            "example": "EXISTS"
+          },
+          "data_points": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Data points for the given command"
+          }
+        }
+      },
+      "TimeSeriesData": {
+        "required": [
+          "x",
+          "y"
+        ],
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "string",
+            "description": "Timestamp when measurement was taken",
+            "example": "2023-05-22 10:59:23.426 \u002B0000 UTC"
+          },
+          "y": {
+            "type": "number",
+            "description": "The measured value",
+            "example": 320
+          }
+        }
+      },
+      "Backup": {
+        "type": "object",
+        "properties": {
+          "database_id": {
+            "type": "string",
+            "description": "ID of the database",
+            "example": "6gcqwafd-9627-4ec2-4g51-b1429h59c8d4"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "Customer ID",
+            "example": "example@upstash.com"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the backup",
+            "example": "test"
+          },
+          "backup_id": {
+            "type": "string",
+            "description": "ID of the backup",
+            "example": "1d62p45b-c567-1239-b23e-449ads33a62e"
+          },
+          "creation_time": {
+            "type": "integer",
+            "description": "Creation time of the backup as Unix time",
+            "format": "int64",
+            "example": 1757000716
+          },
+          "state": {
+            "$ref": "#/components/schemas/BackupState"
+          },
+          "backup_size": {
+            "type": "integer",
+            "description": "Size of the backup",
+            "format": "int64",
+            "example": 0
+          },
+          "daily_backup": {
+            "$ref": "#/components/schemas/BackupDailyBackup"
+          },
+          "hourly_backup": {
+            "$ref": "#/components/schemas/BackupHourlyBackup"
+          },
+          "internal_backup_tag": {
+            "type": "string",
+            "description": "Internal backup tag"
+          }
+        },
+        "xml": {
+          "name": "backup"
+        }
+      },
+      "AuditLog": {
+        "type": "object",
+        "properties": {
+          "log_id": {
+            "type": "string",
+            "description": "Unique identifier for the log entry",
+            "example": "ab9744ed-f51c-4z58-a3cj-e3bs756154du"
+          },
+          "customer_id": {
+            "type": "string",
+            "description": "The ID or email of the customer associated with the log",
+            "example": "example@example.com"
+          },
+          "actor": {
+            "type": "string",
+            "description": "The user or system that performed the action",
+            "example": "example@example.com"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "Unix timestamp of when the action occurred",
+            "format": "int64",
+            "example": 1764587058
+          },
+          "action": {
+            "type": "integer",
+            "description": "Numeric ID representing the specific action type",
+            "example": 13
+          },
+          "action_string": {
+            "type": "string",
+            "description": "Human-readable description of the action",
+            "example": "Delete Team"
+          },
+          "source": {
+            "type": "string",
+            "description": "The source method or client used to perform the action",
+            "example": "API_KEY - system_tests"
+          },
+          "entity": {
+            "type": "string",
+            "description": "The primary entity affected by the action",
+            "example": "test_team"
+          },
+          "secondary_entity": {
+            "type": "string",
+            "description": "A secondary entity affected, \u0022\u0022 or \u0022NA\u0022 if not applicable",
+            "example": "NA"
+          },
+          "third_entity": {
+            "type": "string",
+            "description": "A tertiary entity affected, \u0022\u0022 or \u0022NA\u0022 if not applicable"
+          },
+          "readable_format": {
+            "type": "string",
+            "description": "formatted string for display purposes"
+          },
+          "ip": {
+            "type": "string",
+            "description": "The IP address from which the request originated",
+            "format": "ipv4",
+            "example": "1.2.3.4"
+          },
+          "ttl": {
+            "type": "integer",
+            "description": "Time to live (expiration) timestamp for this log entry",
+            "format": "int64",
+            "example": 1780311858
+          },
+          "reason": {
+            "type": "string",
+            "description": "The reason for the action, if provided"
+          },
+          "notes": {
+            "type": "string",
+            "description": "Additional notes regarding the action"
+          }
+        },
+        "xml": {
+          "name": "audit_log"
+        }
+      },
+      "Team": {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "description": "ID of the team",
+            "example": "95849b27-40d0-4532-8695-d2028847f823"
+          },
+          "team_name": {
+            "type": "string",
+            "description": "Name of the team",
+            "example": "test_team_name"
+          },
+          "copy_cc": {
+            "type": "boolean",
+            "description": "Whether creditcard information added to team during creation or not",
+            "example": true
+          }
+        },
+        "xml": {
+          "name": "team"
+        }
+      },
+      "TeamMember": {
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "description": "ID of the team",
+            "example": "3423cb72-e50d-43ec-a9c0-f0f359941223"
+          },
+          "team_name": {
+            "type": "string",
+            "description": "Name of the team",
+            "example": "test_team_name_2"
+          },
+          "member_email": {
+            "type": "string",
+            "description": "Email of the team member",
+            "example": "example@upstash.com"
+          },
+          "member_role": {
+            "$ref": "#/components/schemas/TeamMemberMemberRole"
+          },
+          "copy_cc": {
+            "type": "boolean",
+            "description": "Whether to copy existing credit card information to team member or not",
+            "example": true
+          }
+        },
+        "xml": {
+          "name": "teamMember"
+        }
+      },
+      "CreateTeamRequest": {
+        "required": [
+          "team_name",
+          "copy_cc"
+        ],
+        "type": "object",
+        "properties": {
+          "team_name": {
+            "type": "string",
+            "description": "Name of the new team",
+            "example": "myteam"
+          },
+          "copy_cc": {
+            "type": "boolean",
+            "description": "Whether to copy existing credit card information to team or not",
+            "example": true
+          }
+        }
+      },
+      "AddTeamMemberRequest": {
+        "required": [
+          "team_id",
+          "member_email",
+          "member_role"
+        ],
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "description": "Id of the team to add the member to",
+            "example": "95849b27-40d0-4532-8695-d2028847f823"
+          },
+          "member_email": {
+            "type": "string",
+            "description": "Email of the new team member",
+            "example": "example@upstash.com"
+          },
+          "member_role": {
+            "$ref": "#/components/schemas/AddTeamMemberRequestMemberRole"
+          }
+        }
+      },
+      "DeleteTeamMemberRequest": {
+        "required": [
+          "team_id",
+          "member_email"
+        ],
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "description": "Id of the team to remove the member from",
+            "example": "95849b27-40d0-4532-8695-d2028847f823"
+          },
+          "member_email": {
+            "type": "string",
+            "description": "Email of the team member to remove",
+            "example": "example@upstash.com"
+          }
+        }
+      },
+      "VectorIndex": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "The associated ID of the owner of the index",
+            "example": "example@upstash.com"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique ID of the index",
+            "example": "0639864f-ece6-429c-8118-86a287b0e808"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the index",
+            "example": "myindex"
+          },
+          "similarity_function": {
+            "$ref": "#/components/schemas/VectorIndexSimilarityFunction"
+          },
+          "dimension_count": {
+            "type": "number",
+            "description": "The amount of values in a single vector",
+            "example": 384
+          },
+          "embedding_model": {
+            "$ref": "#/components/schemas/VectorIndexEmbeddingModel"
+          },
+          "sparse_embedding_model": {
+            "$ref": "#/components/schemas/VectorIndexSparseEmbeddingModel"
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "The REST endpoint of the index",
+            "example": "glowing-baboon-15797-us1"
+          },
+          "token": {
+            "type": "string",
+            "description": "The REST authentication token for the index",
+            "example": "QkZGAsWp2tdW0tdC0zNzM1LWV1MkFkNQzB1ExUb3hOekF0TVRJbFpMDNLVSm1GZw=="
+          },
+          "read_only_token": {
+            "type": "string",
+            "description": "The REST authentication read only token for the index",
+            "example": "QkZGRk1heGSKC0MtdRlZC0zNzM1LWTj3pAV0Wm1aZ01p05qY3RNR0U0TkRtRt2s9azJU"
+          },
+          "type": {
+            "$ref": "#/components/schemas/VectorIndexType"
+          },
+          "region": {
+            "$ref": "#/components/schemas/VectorIndexRegion"
+          },
+          "max_vector_count": {
+            "type": "number",
+            "description": "The number of maximum that your index can contain",
+            "example": 5210000
+          },
+          "max_daily_updates": {
+            "type": "number",
+            "description": "The number of maximum update operations you can perform in a day. Only upsert operations are included in update count.",
+            "example": 1000000
+          },
+          "max_daily_queries": {
+            "type": "number",
+            "description": "The number of maximum query operations you can perform in a day. Only query operations are included in query count.",
+            "example": 1000000
+          },
+          "max_monthly_bandwidth": {
+            "type": "number",
+            "description": "The maximum amount of monthly bandwidth for the index. Unit is bytes. -1 if the limit is unlimited.",
+            "example": -1
+          },
+          "max_writes_per_second": {
+            "type": "number",
+            "description": "The number of maximum write operations you can perform per second. Only upsert operations are included in write count.",
+            "example": 1000
+          },
+          "max_query_per_second": {
+            "type": "number",
+            "description": "The number of maximum query operations you can perform per second. Only query operations are included in query count.",
+            "example": 1000
+          },
+          "max_reads_per_request": {
+            "type": "number",
+            "description": "The number of maximum vectors in a read operation. Query and fetch operations are included in read operations.",
+            "example": 1000
+          },
+          "max_writes_per_request": {
+            "type": "number",
+            "description": "The number of maximum vectors in a write operation. Only upsert operations are included in write operations.",
+            "example": 1000
+          },
+          "max_total_metadata_size": {
+            "type": "number",
+            "description": "The amount of maximum size for the total metadata sizes in your index.",
+            "example": 53687091200
+          },
+          "reserved_price": {
+            "type": "number",
+            "description": "Monthly pricing of your index. Only available for fixed and pro plans.",
+            "example": 60
+          },
+          "creation_time": {
+            "type": "number",
+            "description": "The creation time of the vector index in UTC as unix timestamp.",
+            "example": 1753207106
+          },
+          "index_type": {
+            "$ref": "#/components/schemas/VectorIndexIndexType"
+          },
+          "throughput_vector": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Throughput data for the vector index over time"
+          }
+        },
+        "xml": {
+          "name": "vectorIndex"
+        }
+      },
+      "VectorStats": {
+        "type": "object",
+        "properties": {
+          "pending_index_count": {
+            "type": "integer",
+            "description": "Number of pending index operations",
+            "example": 1
+          },
+          "current_vector_count": {
+            "type": "integer",
+            "description": "Current number of vectors in the index",
+            "example": 1000
+          },
+          "daily_query_count": {
+            "type": "integer",
+            "description": "Total number of query operations executed today",
+            "example": 100
+          },
+          "daily_update_count": {
+            "type": "integer",
+            "description": "Total number of update operations executed today",
+            "example": 10
+          },
+          "monthly_query_count": {
+            "type": "integer",
+            "description": "Total query operations in current month",
+            "example": 1000
+          },
+          "monthly_update_count": {
+            "type": "integer",
+            "description": "Total update operations in current month",
+            "example": 1000
+          },
+          "monthly_bandwidth_usage": {
+            "type": "integer",
+            "description": "Total bandwidth used in current month (bytes)",
+            "example": 7000
+          },
+          "storage_usage": {
+            "type": "integer",
+            "description": "Current storage used (bytes)",
+            "example": 7000
+          },
+          "monthly_cost": {
+            "type": "number",
+            "description": "Total cost in current month",
+            "format": "float",
+            "example": 0.5
+          },
+          "daily_update_requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Daily update requests over time"
+          },
+          "daily_query_requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Daily query requests over time"
+          },
+          "daily_bandwidths": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Daily bandwidth usage over time"
+          },
+          "days": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Days of the week for measurement"
+          },
+          "query_throughput": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Query throughput over time"
+          },
+          "update_throughput": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Update throughput over time"
+          },
+          "query_latency_mean": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Average query latency over time"
+          },
+          "query_latency_99": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "99th percentile query latency over time"
+          },
+          "update_latency_mean": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Average update latency over time"
+          },
+          "update_latency_99": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "99th percentile update latency over time"
+          },
+          "embeds_latency_mean": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Average embedding latency over time"
+          },
+          "embeds_latency_99": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "99th percentile embedding latency over time"
+          },
+          "vector_count": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Vector count over time"
+          },
+          "data_size": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Data size over time"
+          },
+          "daily_rerank_count": {
+            "type": "integer",
+            "description": "Total number of rerank operations executed today",
+            "example": 0
+          },
+          "monthly_rerank_count": {
+            "type": "integer",
+            "description": "Total rerank operations in current month",
+            "example": 10
+          },
+          "daily_rerank_requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Daily rerank requests over time"
+          },
+          "rerank_latency_mean": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Average rerank latency over time"
+          },
+          "rerank_latency_99": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "99th percentile rerank latency over time"
+          }
+        }
+      },
+      "SearchIndex": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "The associated ID of the owner of the index",
+            "example": "example@upstash.com"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique ID of the index",
+            "format": "uuid",
+            "example": "99a4c327-31f0-490f-a594-043ade84085a"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the search index",
+            "example": "mySearchIndex"
+          },
+          "endpoint": {
+            "type": "string",
+            "description": "The REST endpoint of the index",
+            "example": "glowing-baboon-15797-us1"
+          },
+          "type": {
+            "$ref": "#/components/schemas/SearchIndexType"
+          },
+          "region": {
+            "$ref": "#/components/schemas/SearchIndexRegion"
+          },
+          "vercel_email": {
+            "type": "string",
+            "description": "The email associated with Vercel integration, if any. Empty string otherwise.",
+            "example": "example@vercel.com"
+          },
+          "token": {
+            "type": "string",
+            "description": "The REST authentication token for the index",
+            "example": "ZXhhbXBsZUB1cHN0YXNoLmNvbTpuYWJlcg=="
+          },
+          "read_only_token": {
+            "type": "string",
+            "description": "The REST authentication read only token for the search index",
+            "example": "ZXhhbXBsZUB1cHN0YXNoLmNvbTpuYWJlcg=="
+          },
+          "max_vector_count": {
+            "type": "integer",
+            "description": "Maximum number of vectors allowed in the index",
+            "example": 2000000
+          },
+          "max_monthly_reranks": {
+            "type": "integer",
+            "description": "Maximum monthly rerank operations (-1 for unlimited)",
+            "example": -1
+          },
+          "max_daily_updates": {
+            "type": "integer",
+            "description": "Maximum daily update operations (-1 for unlimited)",
+            "example": -1
+          },
+          "max_daily_queries": {
+            "type": "integer",
+            "description": "Maximum daily query operations (-1 for unlimited)",
+            "example": -1
+          },
+          "max_monthly_bandwidth": {
+            "type": "integer",
+            "description": "Maximum monthly bandwidth in bytes (-1 for unlimited)",
+            "example": -1
+          },
+          "max_writes_per_second": {
+            "type": "integer",
+            "description": "Maximum write operations per second (rate limit)",
+            "example": 1000
+          },
+          "max_query_per_second": {
+            "type": "integer",
+            "description": "Maximum query operations per second (rate limit)",
+            "example": 1000
+          },
+          "max_reads_per_request": {
+            "type": "integer",
+            "description": "Maximum number of reads allowed per request",
+            "example": 100
+          },
+          "max_writes_per_request": {
+            "type": "integer",
+            "description": "Maximum number of writes allowed per request",
+            "example": 100
+          },
+          "creation_time": {
+            "type": "integer",
+            "description": "Unix timestamp of creation",
+            "format": "int64",
+            "example": 1761200000
+          },
+          "input_enrichment_enabled": {
+            "type": "boolean",
+            "description": "Whether input enrichment is enabled for this index",
+            "example": true
+          },
+          "throughput_vector": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Throughput metrics over time"
+          }
+        }
+      },
+      "GlobalStats": {
+        "type": "object",
+        "properties": {
+          "record_count": {
+            "type": "integer",
+            "description": "Total number of indexed records across all indexes",
+            "example": 10
+          },
+          "request": {
+            "type": "integer",
+            "description": "Total API requests count across all indexes",
+            "example": 10
+          },
+          "bandwidth": {
+            "type": "integer",
+            "description": "Total bandwidth usage in bytes across all indexes",
+            "example": 750
+          },
+          "storage": {
+            "type": "integer",
+            "description": "Total storage usage in bytes across all indexes",
+            "example": 950
+          },
+          "billing": {
+            "type": "number",
+            "description": "Current billing amount across all indexes",
+            "format": "float",
+            "example": 0.001
+          },
+          "rerank_count": {
+            "type": "integer",
+            "description": "Total reranking operations count across all indexes",
+            "example": 0
+          }
+        }
+      },
+      "QStashUser": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string",
+            "description": "Customer identifier (email or team ID)",
+            "example": "example@upstash.com"
+          },
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the QStash user account",
+            "format": "uuid",
+            "example": "99a4c327-31f0-490f-a594-043ade84085a"
+          },
+          "token": {
+            "type": "string",
+            "description": "Authentication token for QStash operations",
+            "example": "ZXhhbXBsZUB1cHN0YXNoLmNvbTpuYWJlcg=="
+          },
+          "read_only_token": {
+            "type": "string",
+            "description": "Read-only authentication token for QStash operations",
+            "example": "ZXhhbXBsZUB1cHN0YXNoLmNvbTpuYWJlcg=="
+          },
+          "active": {
+            "type": "boolean",
+            "description": "Whether the QStash account is active",
+            "example": true
+          },
+          "state": {
+            "type": "string",
+            "description": "Current state of the QStash account (e.g. \u0060active\u0060, \u0060passive\u0060; other values may be returned)",
+            "example": "active"
+          },
+          "modifying_state": {
+            "type": "string",
+            "description": "Transitional state while the console applies an async change (e.g. \u0060suspended\u0060 during suspension). Omitted when no change is in progress.",
+            "example": "suspended"
+          },
+          "last_plan_upgrade_time": {
+            "type": "integer",
+            "description": "Unix timestamp of the last plan upgrade",
+            "format": "int64",
+            "example": 0
+          },
+          "max_message_size": {
+            "type": "integer",
+            "description": "Maximum message size in bytes",
+            "example": 1048576
+          },
+          "max_requests_per_day": {
+            "type": "integer",
+            "description": "Soft limit for maximum requests per day",
+            "example": 1000
+          },
+          "max_requests_per_day_hard": {
+            "type": "integer",
+            "description": "Hard limit for maximum requests per day",
+            "example": 1000
+          },
+          "max_endpoints_per_topic": {
+            "type": "integer",
+            "description": "Maximum number of endpoints allowed per topic",
+            "example": 100
+          },
+          "max_requests_per_second": {
+            "type": "integer",
+            "description": "Maximum requests per second (rate limit)",
+            "example": 100
+          },
+          "max_dlq_size": {
+            "type": "integer",
+            "description": "Maximum dead letter queue size",
+            "example": 1000000
+          },
+          "max_retries": {
+            "type": "integer",
+            "description": "Maximum number of retry attempts for failed messages",
+            "example": 999
+          },
+          "max_topics": {
+            "type": "integer",
+            "description": "Maximum number of topics allowed",
+            "example": 1
+          },
+          "max_schedules": {
+            "type": "integer",
+            "description": "Maximum number of schedules allowed",
+            "example": 10
+          },
+          "max_events_size": {
+            "type": "integer",
+            "description": "Maximum size for events",
+            "example": 10000
+          },
+          "max_dlq_retention_time_milis": {
+            "type": "integer",
+            "description": "Maximum retention time for dead letter queue in milliseconds",
+            "format": "int64",
+            "example": 259200000
+          },
+          "max_delay": {
+            "type": "integer",
+            "description": "Maximum delay for scheduled messages in seconds",
+            "example": 604800
+          },
+          "max_parallelism": {
+            "type": "integer",
+            "description": "Maximum parallel processing per endpoint",
+            "example": 2
+          },
+          "max_global_parallelism": {
+            "type": "integer",
+            "description": "Maximum global parallel processing across all endpoints",
+            "example": 10
+          },
+          "max_queues": {
+            "type": "integer",
+            "description": "Maximum number of queues allowed",
+            "example": 10
+          },
+          "max_bandwidth_per_second": {
+            "type": "integer",
+            "description": "Maximum bandwidth per second in bytes",
+            "format": "int64",
+            "example": 1048576
+          },
+          "prod_pack_enabled": {
+            "type": "boolean",
+            "description": "Whether production pack features are enabled",
+            "example": false
+          },
+          "prometheus_enabled": {
+            "$ref": "#/components/schemas/QStashUserPrometheusEnabled"
+          },
+          "timeout": {
+            "type": "integer",
+            "description": "Request timeout in seconds",
+            "example": 900
+          },
+          "type": {
+            "$ref": "#/components/schemas/QStashUserType"
+          },
+          "region": {
+            "$ref": "#/components/schemas/QStashUserRegion"
+          },
+          "reserved_type": {
+            "type": "string",
+            "description": "Fixed-tier or enterprise label when applicable. May be empty/absent for non-fixed plans.\nKnown values include \u0060qstash_fixed_1m\u0060, \u0060qstash_fixed_10m\u0060, \u0060qstash_fixed_100m\u0060, \u0060qstash_fixed\u0060.\nEnterprise accounts may use the prefix \u0060enterprise:\u0060 followed by an identifier (e.g. \u0060enterprise:acme\u0060).\n"
+          },
+          "reserved_price": {
+            "type": "integer",
+            "description": "Reserved plan price (may be \u00600\u0060)",
+            "example": 0
+          },
+          "created_by": {
+            "type": "string",
+            "description": "Email of the user who created this account",
+            "example": "cahidarda@upstash.com"
+          },
+          "creation_time": {
+            "type": "integer",
+            "description": "Unix timestamp of account creation",
+            "format": "int64",
+            "example": 1781871358
+          },
+          "deletion_time": {
+            "type": "integer",
+            "description": "Unix timestamp of account deletion (\u00600\u0060 if not deleted)",
+            "format": "int64",
+            "example": 0
+          },
+          "budget": {
+            "type": "integer",
+            "description": "Monthly spending budget limit in dollars. 0 means no limit.",
+            "example": 0
+          },
+          "enterprise": {
+            "$ref": "#/components/schemas/QStashUserEnterprise"
+          }
+        }
+      },
+      "QStashStats": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Array of day names for the measurement period, typically representing all days in the current month.\nThis includes both past and future dates within the current month, so the array covers the entire month regardless of the current day.\nFuture days are included to align with other daily metrics arrays, allowing for consistent indexing.\n"
+          },
+          "daily_requests": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QStashStatsDailyRequestsItem"
+            },
+            "description": "Daily request metrics including workflow breakdowns"
+          },
+          "daily_billings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Daily billing amounts over time"
+          },
+          "daily_bandwidths": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Daily bandwidth usage over time"
+          },
+          "daily_used": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Request counts for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+          },
+          "daily_used_workflow": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Workflow usage metrics for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+          },
+          "daily_qstash_messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesWithId"
+            },
+            "description": "QStash message counts broken down by metric identifier for the requested time period.\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+          },
+          "daily_workflow_messages": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesWithId"
+            },
+            "description": "Workflow metrics broken down by metric identifier for the requested time period.\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+          },
+          "dlq_message_count": {
+            "type": "integer",
+            "description": "Current number of messages in the dead letter queue",
+            "example": 0
+          },
+          "daily_bandwidth_used": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Bandwidth usage for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+          },
+          "total_monthly_billing": {
+            "type": "number",
+            "description": "Total billing amount for the current month",
+            "format": "float",
+            "example": 5.806
+          }
+        }
+      },
+      "TimeSeriesWithId": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Identifier for the time series data",
+            "example": "example_id"
+          },
+          "data_points": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TimeSeriesData"
+            },
+            "description": "Data points for the time series"
+          }
+        }
+      },
+      "CreateIndexRequest": {
+        "required": [
+          "name",
+          "region",
+          "similarity_function",
+          "dimension_count"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the index",
+            "example": "myindex"
+          },
+          "region": {
+            "$ref": "#/components/schemas/CreateIndexRequestRegion"
+          },
+          "similarity_function": {
+            "$ref": "#/components/schemas/CreateIndexRequestSimilarityFunction"
+          },
+          "dimension_count": {
+            "type": "number",
+            "description": "The amount of values in a single vector",
+            "example": 1024
+          },
+          "type": {
+            "$ref": "#/components/schemas/CreateIndexRequestType"
+          },
+          "embedding_model": {
+            "$ref": "#/components/schemas/CreateIndexRequestEmbeddingModel"
+          },
+          "index_type": {
+            "$ref": "#/components/schemas/CreateIndexRequestIndexType"
+          },
+          "sparse_embedding_model": {
+            "$ref": "#/components/schemas/CreateIndexRequestSparseEmbeddingModel"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "xml": {
+          "name": "##default"
+        }
+      },
+      "Error": {
+        "required": [
+          "code",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "DatabaseSecurityAddons": {
+        "type": "object",
+        "properties": {
+          "ipWhitelisting": {
+            "type": "boolean"
+          },
+          "vpcPeering": {
+            "type": "boolean"
+          },
+          "privateLink": {
+            "type": "boolean"
+          },
+          "tlsMutualAuth": {
+            "type": "boolean"
+          },
+          "encryptionAtRest": {
+            "type": "boolean"
+          }
+        },
+        "description": "Security add-ons and their enablement status",
+        "example": {
+          "ipWhitelisting": false,
+          "vpcPeering": false,
+          "privateLink": false,
+          "tlsMutualAuth": false,
+          "encryptionAtRest": false
+        }
+      },
+      "QStashUserEnterprise": {
+        "type": "object",
+        "properties": {
+          "enabled": {
+            "type": "boolean",
+            "description": "Whether enterprise features are enabled",
+            "example": true
+          }
+        },
+        "description": "Present for enterprise accounts"
+      },
+      "QStashStatsDailyRequestsItem": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "string",
+            "description": "Timestamp in UTC format",
+            "example": "2025-10-01 11:33:05.585757103 \u002B0000 UTC"
+          },
+          "y": {
+            "type": "number",
+            "description": "Total request count for this day",
+            "example": 0
+          },
+          "workflow_message": {
+            "type": "integer",
+            "description": "Number of workflow messages for this day",
+            "example": 0
+          },
+          "workflow_run": {
+            "type": "integer",
+            "description": "Number of workflow runs for this day",
+            "example": 0
+          }
+        }
+      },
+      "ListDatabases200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Database"
+        }
+      },
+      "DeleteDatabase200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "RenameDatabaseRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The new name of the database"
+          }
+        }
+      },
+      "EnableEviction200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "DisableEviction200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "EnableAutoUpgrade200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "DisableAutoUpgrade200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ChangePlan200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "UpdateBudgetRequest": {
+        "required": [
+          "budget"
+        ],
+        "type": "object",
+        "properties": {
+          "budget": {
+            "type": "integer",
+            "description": "The new monthly budget for the database"
+          }
+        }
+      },
+      "UpdateBudget200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "UpdateRegionsRequest": {
+        "required": [
+          "read_regions"
+        ],
+        "type": "object",
+        "properties": {
+          "read_regions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UpdateRegionsRequestReadRegionsItem"
+            },
+            "description": "Array of Read Regions of the Database"
+          }
+        }
+      },
+      "UpdateRegions200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "MoveToTeamRequest": {
+        "required": [
+          "team_id",
+          "database_id"
+        ],
+        "type": "object",
+        "properties": {
+          "team_id": {
+            "type": "string",
+            "description": "The ID of the target team"
+          },
+          "database_id": {
+            "type": "string",
+            "description": "The ID of the database to be moved"
+          }
+        }
+      },
+      "MoveToTeam200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ListBackup200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Backup"
+        }
+      },
+      "CreateBackupRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the backup"
+          }
+        }
+      },
+      "CreateBackup200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "DeleteBackup200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "RestoreBackupRequest": {
+        "required": [
+          "backup_id"
+        ],
+        "type": "object",
+        "properties": {
+          "backup_id": {
+            "type": "string",
+            "description": "ID of the backup to restore"
+          }
+        }
+      },
+      "RestoreBackup200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "EnableDailyBackup200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "DisableDailyBackup200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ListTeams200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Team"
+        }
+      },
+      "ListAuditLogs200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/AuditLog"
+        }
+      },
+      "DeleteTeam200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "GetTeamMembers200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TeamMember"
+        }
+      },
+      "DeleteTeamMember200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ListIndices200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/VectorIndex"
+        }
+      },
+      "DeleteIndex200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "RenameIndexRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The new name of the index"
+          }
+        }
+      },
+      "RenameIndex200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ResetIndexPasswords200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "SetIndexPlanRequest": {
+        "required": [
+          "target_plan"
+        ],
+        "type": "object",
+        "properties": {
+          "target_plan": {
+            "$ref": "#/components/schemas/SetIndexPlanRequestTargetPlan"
+          }
+        }
+      },
+      "SetIndexPlan200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "TransferIndexRequest": {
+        "required": [
+          "target_account"
+        ],
+        "type": "object",
+        "properties": {
+          "target_account": {
+            "type": "string",
+            "description": "The team ID of the target team.",
+            "example": "99a4c327-31f0-490f-a594-043ade84085a"
+          }
+        }
+      },
+      "TransferIndex200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ListSearchIndexes200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SearchIndex"
+        }
+      },
+      "CreateSearchIndexRequest": {
+        "required": [
+          "name",
+          "region",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the search index",
+            "example": "mySearchIndex"
+          },
+          "region": {
+            "$ref": "#/components/schemas/CreateSearchIndexRequestRegion"
+          },
+          "type": {
+            "$ref": "#/components/schemas/CreateSearchIndexRequestType"
+          }
+        }
+      },
+      "DeleteSearchIndex200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ResetSearchPassword200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "TransferSearchIndexRequest": {
+        "required": [
+          "target_account"
+        ],
+        "type": "object",
+        "properties": {
+          "target_account": {
+            "type": "string",
+            "description": "The ID of the target team account.",
+            "example": "99a4c327-31f0-490f-a594-043ade84085a"
+          }
+        }
+      },
+      "TransferSearchIndex200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "RenameSearchIndexRequest": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "New name for the index",
+            "example": "new-index-name"
+          }
+        }
+      },
+      "RenameSearchIndex200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ListQStashUsers200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/QStashUser"
+        }
+      },
+      "SetQStashPlanRequest": {
+        "required": [
+          "plan_name"
+        ],
+        "type": "object",
+        "properties": {
+          "plan_name": {
+            "$ref": "#/components/schemas/SetQStashPlanRequestPlanName"
+          }
+        }
+      },
+      "SetQStashPlan200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "GetQStashIPv4200Response": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "MoveQStashToTeamRequest": {
+        "required": [
+          "qstash_id",
+          "target_team_id"
+        ],
+        "type": "object",
+        "properties": {
+          "qstash_id": {
+            "type": "string",
+            "description": "ID of the QStash instance to move"
+          },
+          "target_team_id": {
+            "type": "string",
+            "description": "ID of the target team"
+          }
+        }
+      },
+      "MoveQStashToTeam200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "UpdateQStashBudgetRequest": {
+        "required": [
+          "budget"
+        ],
+        "type": "object",
+        "properties": {
+          "budget": {
+            "maximum": 10000,
+            "minimum": 0,
+            "type": "integer",
+            "description": "Monthly spending budget limit in dollars. Minimum 20, maximum 10000, or 0 for no limit.",
+            "example": 100
+          }
+        }
+      },
+      "UpdateQStashBudget200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "EnableQStashProdPack200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "DisableQStashProdPack200Response": {
+        "type": "string",
+        "example": "OK"
+      },
+      "ExamplePayload": {
+        "type": "object",
+        "description": "Placeholder schema for path example refs"
+      },
+      "ListDatabases200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Database"
+        }
+      },
+      "DeleteDatabase200ResponseSchema": {
+        "type": "string"
+      },
+      "EnableEviction200ResponseSchema": {
+        "type": "string"
+      },
+      "DisableEviction200ResponseSchema": {
+        "type": "string"
+      },
+      "EnableAutoUpgrade200ResponseSchema": {
+        "type": "string"
+      },
+      "DisableAutoUpgrade200ResponseSchema": {
+        "type": "string"
+      },
+      "ChangePlan200ResponseSchema": {
+        "type": "string"
+      },
+      "UpdateBudget200ResponseSchema": {
+        "type": "string"
+      },
+      "UpdateRegions200ResponseSchema": {
+        "type": "string"
+      },
+      "MoveToTeam200ResponseSchema": {
+        "type": "string"
+      },
+      "ListBackup200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Backup"
+        }
+      },
+      "CreateBackup200ResponseSchema": {
+        "type": "string"
+      },
+      "DeleteBackup200ResponseSchema": {
+        "type": "string"
+      },
+      "RestoreBackup200ResponseSchema": {
+        "type": "string"
+      },
+      "EnableDailyBackup200ResponseSchema": {
+        "type": "string"
+      },
+      "DisableDailyBackup200ResponseSchema": {
+        "type": "string"
+      },
+      "ListTeams200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Team"
+        }
+      },
+      "ListAuditLogs200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/AuditLog"
+        }
+      },
+      "DeleteTeam200ResponseSchema": {
+        "type": "string"
+      },
+      "GetTeamMembers200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/TeamMember"
+        }
+      },
+      "DeleteTeamMember200ResponseSchema": {
+        "type": "string"
+      },
+      "ListIndices200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/VectorIndex"
+        }
+      },
+      "DeleteIndex200ResponseSchema": {
+        "type": "string"
+      },
+      "RenameIndex200ResponseSchema": {
+        "type": "string"
+      },
+      "ResetIndexPasswords200ResponseSchema": {
+        "type": "string"
+      },
+      "SetIndexPlan200ResponseSchema": {
+        "type": "string"
+      },
+      "TransferIndex200ResponseSchema": {
+        "type": "string"
+      },
+      "ListSearchIndexes200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/SearchIndex"
+        }
+      },
+      "DeleteSearchIndex200ResponseSchema": {
+        "type": "string"
+      },
+      "ResetSearchPassword200ResponseSchema": {
+        "type": "string"
+      },
+      "TransferSearchIndex200ResponseSchema": {
+        "type": "string"
+      },
+      "RenameSearchIndex200ResponseSchema": {
+        "type": "string"
+      },
+      "ListQStashUsers200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/QStashUser"
+        }
+      },
+      "SetQStashPlan200ResponseSchema": {
+        "type": "string"
+      },
+      "GetQStashIPv4200ResponseSchema": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "MoveQStashToTeam200ResponseSchema": {
+        "type": "string"
+      },
+      "UpdateQStashBudget200ResponseSchema": {
+        "type": "string"
+      },
+      "EnableQStashProdPack200ResponseSchema": {
+        "type": "string"
+      },
+      "DisableQStashProdPack200ResponseSchema": {
+        "type": "string"
+      },
+      "GlobalRegion": {
+        "enum": [
+          "global"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The region where database is hosted",
+        "example": "global",
+        "x-ms-enum": {
+          "name": "GlobalRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "global",
+              "name": "Global"
+            }
+          ]
+        }
+      },
+      "DatabaseState": {
+        "enum": [
+          "active",
+          "suspended",
+          "passive"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "State of database",
+        "example": "active",
+        "x-ms-enum": {
+          "name": "DatabaseState",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "active",
+              "name": "Active"
+            },
+            {
+              "value": "suspended",
+              "name": "Suspended"
+            },
+            {
+              "value": "passive",
+              "name": "Passive"
+            }
+          ]
+        }
+      },
+      "DatabaseType": {
+        "enum": [
+          "free",
+          "payg",
+          "pro",
+          "paid"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Payment plan of the database",
+        "example": "paid",
+        "x-ms-enum": {
+          "name": "DatabaseType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "payg",
+              "name": "Payg"
+            },
+            {
+              "value": "pro",
+              "name": "Pro"
+            },
+            {
+              "value": "paid",
+              "name": "Paid"
+            }
+          ]
+        }
+      },
+      "DatabasePrimaryRegion": {
+        "enum": [
+          "us-east-1",
+          "us-east-2",
+          "us-west-1",
+          "us-west-2",
+          "ca-central-1",
+          "eu-central-1",
+          "eu-west-1",
+          "eu-west-2",
+          "sa-east-1",
+          "ap-south-1",
+          "ap-northeast-1",
+          "ap-southeast-1",
+          "ap-southeast-2",
+          "af-south-1",
+          "us-central1",
+          "us-east4",
+          "europe-west1",
+          "asia-northeast1"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Primary region of the database cluster",
+        "example": "us-east-1",
+        "x-ms-enum": {
+          "name": "DatabasePrimaryRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "us-east-1",
+              "name": "UsEast1"
+            },
+            {
+              "value": "us-east-2",
+              "name": "UsEast2"
+            },
+            {
+              "value": "us-west-1",
+              "name": "UsWest1"
+            },
+            {
+              "value": "us-west-2",
+              "name": "UsWest2"
+            },
+            {
+              "value": "ca-central-1",
+              "name": "CaCentral1"
+            },
+            {
+              "value": "eu-central-1",
+              "name": "EuCentral1"
+            },
+            {
+              "value": "eu-west-1",
+              "name": "EuWest1"
+            },
+            {
+              "value": "eu-west-2",
+              "name": "EuWest2"
+            },
+            {
+              "value": "sa-east-1",
+              "name": "SaEast1"
+            },
+            {
+              "value": "ap-south-1",
+              "name": "ApSouth1"
+            },
+            {
+              "value": "ap-northeast-1",
+              "name": "ApNortheast1"
+            },
+            {
+              "value": "ap-southeast-1",
+              "name": "ApSoutheast1"
+            },
+            {
+              "value": "ap-southeast-2",
+              "name": "ApSoutheast2"
+            },
+            {
+              "value": "af-south-1",
+              "name": "AfSouth1"
+            },
+            {
+              "value": "us-central1",
+              "name": "UsCentral1"
+            },
+            {
+              "value": "us-east4",
+              "name": "UsEast4"
+            },
+            {
+              "value": "europe-west1",
+              "name": "EuropeWest1"
+            },
+            {
+              "value": "asia-northeast1",
+              "name": "AsiaNortheast1"
+            }
+          ]
+        }
+      },
+      "DatabaseDbResourceSize": {
+        "enum": [
+          "S",
+          "M",
+          "L",
+          "XL",
+          "XXL",
+          "3XL"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Resource allocation tier",
+        "example": "L",
+        "x-ms-enum": {
+          "name": "DatabaseDbResourceSize",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "XL",
+              "name": "Xl"
+            },
+            {
+              "value": "XXL",
+              "name": "Xxl"
+            },
+            {
+              "value": "3XL",
+              "name": "Value3Xl"
+            }
+          ]
+        }
+      },
+      "DatabaseDbType": {
+        "enum": [
+          "bolt",
+          "badger",
+          "pebble"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Database storage engine type",
+        "example": "pebble",
+        "x-ms-enum": {
+          "name": "DatabaseDbType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "bolt",
+              "name": "Bolt"
+            },
+            {
+              "value": "badger",
+              "name": "Badger"
+            },
+            {
+              "value": "pebble",
+              "name": "Pebble"
+            }
+          ]
+        }
+      },
+      "DatabaseDbAclEnabled": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Access Control List enabled status",
+        "example": "false",
+        "x-ms-enum": {
+          "name": "DatabaseDbAclEnabled",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
+      "DatabaseDbAclDefaultUserStatus": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Default user access status in ACL",
+        "example": "true",
+        "x-ms-enum": {
+          "name": "DatabaseDbAclDefaultUserStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
+      "DatabasePrometheusEnabled": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Prometheus integration enabled status",
+        "example": "false",
+        "x-ms-enum": {
+          "name": "DatabasePrometheusEnabled",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
+      "CreateDatabaseRequestPlatform": {
+        "enum": [
+          "aws",
+          "gcp"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Desired cloud platform for the database.",
+        "example": "aws",
+        "x-ms-enum": {
+          "name": "CreateDatabaseRequestPlatform",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "aws",
+              "name": "Aws"
+            },
+            {
+              "value": "gcp",
+              "name": "Gcp"
+            }
+          ]
+        }
+      },
+      "CreateDatabaseRequestPrimaryRegion": {
+        "enum": [
+          "us-east-1",
+          "us-east-2",
+          "us-west-1",
+          "us-west-2",
+          "ca-central-1",
+          "eu-central-1",
+          "eu-west-1",
+          "eu-west-2",
+          "sa-east-1",
+          "ap-south-1",
+          "ap-northeast-1",
+          "ap-southeast-1",
+          "ap-southeast-2",
+          "af-south-1",
+          "us-central1",
+          "us-east4",
+          "europe-west1",
+          "asia-northeast1"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Primary Region of the Global Database",
+        "example": "us-east-1",
+        "x-ms-enum": {
+          "name": "CreateDatabaseRequestPrimaryRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "us-east-1",
+              "name": "UsEast1"
+            },
+            {
+              "value": "us-east-2",
+              "name": "UsEast2"
+            },
+            {
+              "value": "us-west-1",
+              "name": "UsWest1"
+            },
+            {
+              "value": "us-west-2",
+              "name": "UsWest2"
+            },
+            {
+              "value": "ca-central-1",
+              "name": "CaCentral1"
+            },
+            {
+              "value": "eu-central-1",
+              "name": "EuCentral1"
+            },
+            {
+              "value": "eu-west-1",
+              "name": "EuWest1"
+            },
+            {
+              "value": "eu-west-2",
+              "name": "EuWest2"
+            },
+            {
+              "value": "sa-east-1",
+              "name": "SaEast1"
+            },
+            {
+              "value": "ap-south-1",
+              "name": "ApSouth1"
+            },
+            {
+              "value": "ap-northeast-1",
+              "name": "ApNortheast1"
+            },
+            {
+              "value": "ap-southeast-1",
+              "name": "ApSoutheast1"
+            },
+            {
+              "value": "ap-southeast-2",
+              "name": "ApSoutheast2"
+            },
+            {
+              "value": "af-south-1",
+              "name": "AfSouth1"
+            },
+            {
+              "value": "us-central1",
+              "name": "UsCentral1"
+            },
+            {
+              "value": "us-east4",
+              "name": "UsEast4"
+            },
+            {
+              "value": "europe-west1",
+              "name": "EuropeWest1"
+            },
+            {
+              "value": "asia-northeast1",
+              "name": "AsiaNortheast1"
+            }
+          ]
+        }
+      },
+      "CreateDatabaseRequestReadRegionsItem": {
+        "enum": [
+          "us-east-1",
+          "us-east-2",
+          "us-west-1",
+          "us-west-2",
+          "ca-central-1",
+          "eu-central-1",
+          "eu-west-1",
+          "eu-west-2",
+          "sa-east-1",
+          "ap-south-1",
+          "ap-northeast-1",
+          "ap-southeast-1",
+          "ap-southeast-2"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CreateDatabaseRequestReadRegionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "us-east-1",
+              "name": "UsEast1"
+            },
+            {
+              "value": "us-east-2",
+              "name": "UsEast2"
+            },
+            {
+              "value": "us-west-1",
+              "name": "UsWest1"
+            },
+            {
+              "value": "us-west-2",
+              "name": "UsWest2"
+            },
+            {
+              "value": "ca-central-1",
+              "name": "CaCentral1"
+            },
+            {
+              "value": "eu-central-1",
+              "name": "EuCentral1"
+            },
+            {
+              "value": "eu-west-1",
+              "name": "EuWest1"
+            },
+            {
+              "value": "eu-west-2",
+              "name": "EuWest2"
+            },
+            {
+              "value": "sa-east-1",
+              "name": "SaEast1"
+            },
+            {
+              "value": "ap-south-1",
+              "name": "ApSouth1"
+            },
+            {
+              "value": "ap-northeast-1",
+              "name": "ApNortheast1"
+            },
+            {
+              "value": "ap-southeast-1",
+              "name": "ApSoutheast1"
+            },
+            {
+              "value": "ap-southeast-2",
+              "name": "ApSoutheast2"
+            }
+          ]
+        }
+      },
+      "CreateDatabaseRequestPlan": {
+        "enum": [
+          "free",
+          "payg",
+          "fixed_250mb",
+          "fixed_1gb",
+          "fixed_5gb",
+          "fixed_10gb",
+          "fixed_50gb",
+          "fixed_100gb",
+          "fixed_500gb"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Specifies the fixed plan type for the database.\nIf omitted, the database defaults to either the pay-as-you-go or free plan, based on the account type.\n",
+        "example": "payg",
+        "x-ms-enum": {
+          "name": "CreateDatabaseRequestPlan",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "payg",
+              "name": "Payg"
+            },
+            {
+              "value": "fixed_250mb",
+              "name": "Fixed250Mb"
+            },
+            {
+              "value": "fixed_1gb",
+              "name": "Fixed1Gb"
+            },
+            {
+              "value": "fixed_5gb",
+              "name": "Fixed5Gb"
+            },
+            {
+              "value": "fixed_10gb",
+              "name": "Fixed10Gb"
+            },
+            {
+              "value": "fixed_50gb",
+              "name": "Fixed50Gb"
+            },
+            {
+              "value": "fixed_100gb",
+              "name": "Fixed100Gb"
+            },
+            {
+              "value": "fixed_500gb",
+              "name": "Fixed500Gb"
+            }
+          ]
+        }
+      },
+      "ChangePlanRequestPlanName": {
+        "enum": [
+          "free",
+          "payg",
+          "fixed_250mb",
+          "fixed_1gb",
+          "fixed_5gb",
+          "fixed_10gb",
+          "fixed_50gb",
+          "fixed_100gb",
+          "fixed_500gb"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The new plan for the database",
+        "example": "fixed_1gb",
+        "x-ms-enum": {
+          "name": "ChangePlanRequestPlanName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "payg",
+              "name": "Payg"
+            },
+            {
+              "value": "fixed_250mb",
+              "name": "Fixed250Mb"
+            },
+            {
+              "value": "fixed_1gb",
+              "name": "Fixed1Gb"
+            },
+            {
+              "value": "fixed_5gb",
+              "name": "Fixed5Gb"
+            },
+            {
+              "value": "fixed_10gb",
+              "name": "Fixed10Gb"
+            },
+            {
+              "value": "fixed_50gb",
+              "name": "Fixed50Gb"
+            },
+            {
+              "value": "fixed_100gb",
+              "name": "Fixed100Gb"
+            },
+            {
+              "value": "fixed_500gb",
+              "name": "Fixed500Gb"
+            }
+          ]
+        }
+      },
+      "BackupState": {
+        "enum": [
+          "pending",
+          "completed",
+          "failed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "State of the backup",
+        "example": "pending",
+        "x-ms-enum": {
+          "name": "BackupState",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "pending",
+              "name": "Pending"
+            },
+            {
+              "value": "completed",
+              "name": "Completed"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
+      "BackupDailyBackup": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Daily backup status",
+        "example": "false",
+        "x-ms-enum": {
+          "name": "BackupDailyBackup",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
+      "BackupHourlyBackup": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Hourly backup status",
+        "example": "false",
+        "x-ms-enum": {
+          "name": "BackupHourlyBackup",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
+      "TeamMemberMemberRole": {
+        "enum": [
+          "owner",
+          "admin",
+          "dev",
+          "finance"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Role of the team member",
+        "example": "dev",
+        "x-ms-enum": {
+          "name": "TeamMemberMemberRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "owner",
+              "name": "Owner"
+            },
+            {
+              "value": "admin",
+              "name": "Admin"
+            },
+            {
+              "value": "dev",
+              "name": "Dev"
+            },
+            {
+              "value": "finance",
+              "name": "Finance"
+            }
+          ]
+        }
+      },
+      "AddTeamMemberRequestMemberRole": {
+        "enum": [
+          "admin",
+          "dev",
+          "finance"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Role of the new team member",
+        "example": "dev",
+        "x-ms-enum": {
+          "name": "AddTeamMemberRequestMemberRole",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "admin",
+              "name": "Admin"
+            },
+            {
+              "value": "dev",
+              "name": "Dev"
+            },
+            {
+              "value": "finance",
+              "name": "Finance"
+            }
+          ]
+        }
+      },
+      "VectorIndexSimilarityFunction": {
+        "enum": [
+          "COSINE",
+          "EUCLIDEAN",
+          "DOT_PRODUCT"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Similarity function that\u0027s used to calculate the distance between two vectors",
+        "example": "COSINE",
+        "x-ms-enum": {
+          "name": "VectorIndexSimilarityFunction",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "COSINE",
+              "name": "Cosine"
+            },
+            {
+              "value": "EUCLIDEAN",
+              "name": "Euclidean"
+            },
+            {
+              "value": "DOT_PRODUCT",
+              "name": "DotProduct"
+            }
+          ]
+        }
+      },
+      "VectorIndexEmbeddingModel": {
+        "enum": [
+          "BGE_SMALL_EN_V1_5",
+          "BGE_BASE_EN_V1_5",
+          "BGE_LARGE_EN_V1_5",
+          "BGE_M3"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The predefined embedding model to vectorize your plain text",
+        "example": "BGE_SMALL_EN_V1_5",
+        "x-ms-enum": {
+          "name": "VectorIndexEmbeddingModel",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "BGE_SMALL_EN_V1_5",
+              "name": "BgeSmallEnV15"
+            },
+            {
+              "value": "BGE_BASE_EN_V1_5",
+              "name": "BgeBaseEnV15"
+            },
+            {
+              "value": "BGE_LARGE_EN_V1_5",
+              "name": "BgeLargeEnV15"
+            },
+            {
+              "value": "BGE_M3",
+              "name": "BgeM3"
+            }
+          ]
+        }
+      },
+      "VectorIndexSparseEmbeddingModel": {
+        "enum": [
+          "BM25",
+          "BGE_M3"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The sparse embedding model to be used for indexes",
+        "example": "BM25",
+        "x-ms-enum": {
+          "name": "VectorIndexSparseEmbeddingModel",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "BM25",
+              "name": "Bm25"
+            },
+            {
+              "value": "BGE_M3",
+              "name": "BgeM3"
+            }
+          ]
+        }
+      },
+      "VectorIndexType": {
+        "enum": [
+          "free",
+          "payg",
+          "fixed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The payment plan of the index",
+        "example": "fixed",
+        "x-ms-enum": {
+          "name": "VectorIndexType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "payg",
+              "name": "Payg"
+            },
+            {
+              "value": "fixed",
+              "name": "FixedValue"
+            }
+          ]
+        }
+      },
+      "VectorIndexRegion": {
+        "enum": [
+          "eu-west-1",
+          "us-east-1",
+          "us-central1"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The region where the index is currently deployed",
+        "example": "us-east-1",
+        "x-ms-enum": {
+          "name": "VectorIndexRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "eu-west-1",
+              "name": "EuWest1"
+            },
+            {
+              "value": "us-east-1",
+              "name": "UsEast1"
+            },
+            {
+              "value": "us-central1",
+              "name": "UsCentral1"
+            }
+          ]
+        }
+      },
+      "VectorIndexIndexType": {
+        "enum": [
+          "DENSE",
+          "SPARSE",
+          "HYBRID"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The type of the vector index",
+        "example": "DENSE",
+        "x-ms-enum": {
+          "name": "VectorIndexIndexType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "DENSE",
+              "name": "Dense"
+            },
+            {
+              "value": "SPARSE",
+              "name": "Sparse"
+            },
+            {
+              "value": "HYBRID",
+              "name": "Hybrid"
+            }
+          ]
+        }
+      },
+      "SearchIndexType": {
+        "enum": [
+          "free",
+          "payg",
+          "fixed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The payment plan of the index",
+        "example": "payg",
+        "x-ms-enum": {
+          "name": "SearchIndexType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "payg",
+              "name": "Payg"
+            },
+            {
+              "value": "fixed",
+              "name": "FixedValue"
+            }
+          ]
+        }
+      },
+      "SearchIndexRegion": {
+        "enum": [
+          "eu-west-1",
+          "us-central1"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The region where the index is currently deployed",
+        "example": "us-central1",
+        "x-ms-enum": {
+          "name": "SearchIndexRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "eu-west-1",
+              "name": "EuWest1"
+            },
+            {
+              "value": "us-central1",
+              "name": "UsCentral1"
+            }
+          ]
+        }
+      },
+      "QStashUserPrometheusEnabled": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Whether Prometheus metrics export is enabled (\u0060\u0022true\u0022\u0060 / \u0060\u0022false\u0022\u0060 string as returned by the API)",
+        "example": "false",
+        "x-ms-enum": {
+          "name": "QStashUserPrometheusEnabled",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
+      "QStashUserType": {
+        "enum": [
+          "free",
+          "paid"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Account billing plan category",
+        "example": "free",
+        "x-ms-enum": {
+          "name": "QStashUserType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "paid",
+              "name": "Paid"
+            }
+          ]
+        }
+      },
+      "QStashUserRegion": {
+        "enum": [
+          "eu-central-1",
+          "us-east-1"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Region where the QStash instance is deployed",
+        "example": "eu-central-1",
+        "x-ms-enum": {
+          "name": "QStashUserRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "eu-central-1",
+              "name": "EuCentral1"
+            },
+            {
+              "value": "us-east-1",
+              "name": "UsEast1"
+            }
+          ]
+        }
+      },
+      "CreateIndexRequestRegion": {
+        "enum": [
+          "eu-west-1",
+          "us-east-1",
+          "us-central1"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Region of the database",
+        "example": "us-east-1",
+        "x-ms-enum": {
+          "name": "CreateIndexRequestRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "eu-west-1",
+              "name": "EuWest1"
+            },
+            {
+              "value": "us-east-1",
+              "name": "UsEast1"
+            },
+            {
+              "value": "us-central1",
+              "name": "UsCentral1"
+            }
+          ]
+        }
+      },
+      "CreateIndexRequestSimilarityFunction": {
+        "enum": [
+          "COSINE",
+          "EUCLIDEAN",
+          "DOT_PRODUCT"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Similarity function that\u0027s used to calculate the distance between two vectors",
+        "example": "COSINE",
+        "x-ms-enum": {
+          "name": "CreateIndexRequestSimilarityFunction",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "COSINE",
+              "name": "Cosine"
+            },
+            {
+              "value": "EUCLIDEAN",
+              "name": "Euclidean"
+            },
+            {
+              "value": "DOT_PRODUCT",
+              "name": "DotProduct"
+            }
+          ]
+        }
+      },
+      "CreateIndexRequestType": {
+        "enum": [
+          "payg",
+          "fixed",
+          "paid"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The payment plan of your index",
+        "example": "payg",
+        "x-ms-enum": {
+          "name": "CreateIndexRequestType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "payg",
+              "name": "Payg"
+            },
+            {
+              "value": "fixed",
+              "name": "FixedValue"
+            },
+            {
+              "value": "paid",
+              "name": "Paid"
+            }
+          ]
+        }
+      },
+      "CreateIndexRequestEmbeddingModel": {
+        "enum": [
+          "BGE_SMALL_EN_V1_5",
+          "BGE_BASE_EN_V1_5",
+          "BGE_LARGE_EN_V1_5",
+          "BGE_M3"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The embedding model to use for the index",
+        "example": "BGE_M3",
+        "x-ms-enum": {
+          "name": "CreateIndexRequestEmbeddingModel",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "BGE_SMALL_EN_V1_5",
+              "name": "BgeSmallEnV15"
+            },
+            {
+              "value": "BGE_BASE_EN_V1_5",
+              "name": "BgeBaseEnV15"
+            },
+            {
+              "value": "BGE_LARGE_EN_V1_5",
+              "name": "BgeLargeEnV15"
+            },
+            {
+              "value": "BGE_M3",
+              "name": "BgeM3"
+            }
+          ]
+        }
+      },
+      "CreateIndexRequestIndexType": {
+        "enum": [
+          "DENSE",
+          "SPARSE",
+          "HYBRID"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The type of the vector index",
+        "example": "HYBRID",
+        "x-ms-enum": {
+          "name": "CreateIndexRequestIndexType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "DENSE",
+              "name": "Dense"
+            },
+            {
+              "value": "SPARSE",
+              "name": "Sparse"
+            },
+            {
+              "value": "HYBRID",
+              "name": "Hybrid"
+            }
+          ]
+        }
+      },
+      "CreateIndexRequestSparseEmbeddingModel": {
+        "enum": [
+          "BM25",
+          "BGE_M3"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The sparse embedding model to be used for indexes",
+        "example": "BM25",
+        "x-ms-enum": {
+          "name": "CreateIndexRequestSparseEmbeddingModel",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "BM25",
+              "name": "Bm25"
+            },
+            {
+              "value": "BGE_M3",
+              "name": "BgeM3"
+            }
+          ]
+        }
+      },
+      "UpdateRegionsRequestReadRegionsItem": {
+        "enum": [
+          "us-east-1",
+          "us-east-2",
+          "us-west-1",
+          "us-west-2",
+          "ca-central-1",
+          "eu-central-1",
+          "eu-west-1",
+          "eu-west-2",
+          "sa-east-1",
+          "ap-south-1",
+          "ap-northeast-1",
+          "ap-southeast-1",
+          "ap-southeast-2"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "UpdateRegionsRequestReadRegionsItem",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "us-east-1",
+              "name": "UsEast1"
+            },
+            {
+              "value": "us-east-2",
+              "name": "UsEast2"
+            },
+            {
+              "value": "us-west-1",
+              "name": "UsWest1"
+            },
+            {
+              "value": "us-west-2",
+              "name": "UsWest2"
+            },
+            {
+              "value": "ca-central-1",
+              "name": "CaCentral1"
+            },
+            {
+              "value": "eu-central-1",
+              "name": "EuCentral1"
+            },
+            {
+              "value": "eu-west-1",
+              "name": "EuWest1"
+            },
+            {
+              "value": "eu-west-2",
+              "name": "EuWest2"
+            },
+            {
+              "value": "sa-east-1",
+              "name": "SaEast1"
+            },
+            {
+              "value": "ap-south-1",
+              "name": "ApSouth1"
+            },
+            {
+              "value": "ap-northeast-1",
+              "name": "ApNortheast1"
+            },
+            {
+              "value": "ap-southeast-1",
+              "name": "ApSoutheast1"
+            },
+            {
+              "value": "ap-southeast-2",
+              "name": "ApSoutheast2"
+            }
+          ]
+        }
+      },
+      "SetIndexPlanRequestTargetPlan": {
+        "enum": [
+          "free",
+          "payg",
+          "fixed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The new plan for the index",
+        "x-ms-enum": {
+          "name": "SetIndexPlanRequestTargetPlan",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "payg",
+              "name": "Payg"
+            },
+            {
+              "value": "fixed",
+              "name": "FixedValue"
+            }
+          ]
+        }
+      },
+      "CreateSearchIndexRequestRegion": {
+        "enum": [
+          "eu-west-1",
+          "us-central1"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Region of the index",
+        "example": "eu-west-1",
+        "x-ms-enum": {
+          "name": "CreateSearchIndexRequestRegion",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "eu-west-1",
+              "name": "EuWest1"
+            },
+            {
+              "value": "us-central1",
+              "name": "UsCentral1"
+            }
+          ]
+        }
+      },
+      "CreateSearchIndexRequestType": {
+        "enum": [
+          "free",
+          "payg",
+          "fixed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Index payment type. Currently \u0027free\u0027 and \u0027payg\u0027 are available.",
+        "example": "payg",
+        "x-ms-enum": {
+          "name": "CreateSearchIndexRequestType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "free",
+              "name": "Free"
+            },
+            {
+              "value": "payg",
+              "name": "Payg"
+            },
+            {
+              "value": "fixed",
+              "name": "FixedValue"
+            }
+          ]
+        }
+      },
+      "SetQStashPlanRequestPlanName": {
+        "enum": [
+          "paid",
+          "qstash_fixed_1m",
+          "qstash_fixed_10m",
+          "qstash_fixed_100m"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Target plan to upgrade to",
+        "example": "paid",
+        "x-ms-enum": {
+          "name": "SetQStashPlanRequestPlanName",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "paid",
+              "name": "Paid"
+            },
+            {
+              "value": "qstash_fixed_1m",
+              "name": "QstashFixed1M"
+            },
+            {
+              "value": "qstash_fixed_10m",
+              "name": "QstashFixed10M"
+            },
+            {
+              "value": "qstash_fixed_100m",
+              "name": "QstashFixed100M"
+            }
+          ]
+        }
+      },
+      "GetVectorIndexStatsPeriodParameter": {
+        "enum": [
+          "1h",
+          "3h",
+          "12h",
+          "1d",
+          "3d",
+          "7d",
+          "30d"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetVectorIndexStatsPeriodParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "1h",
+              "name": "Value1H"
+            },
+            {
+              "value": "3h",
+              "name": "Value3H"
+            },
+            {
+              "value": "12h",
+              "name": "Value12H"
+            },
+            {
+              "value": "1d",
+              "name": "Value1D"
+            },
+            {
+              "value": "3d",
+              "name": "Value3D"
+            },
+            {
+              "value": "7d",
+              "name": "Value7D"
+            },
+            {
+              "value": "30d",
+              "name": "Value30D"
+            }
+          ]
+        }
+      },
+      "GetSearchIndexStatsPeriodParameter": {
+        "enum": [
+          "1h",
+          "3h",
+          "12h",
+          "1d",
+          "3d",
+          "7d",
+          "30d"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetSearchIndexStatsPeriodParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "1h",
+              "name": "Value1H"
+            },
+            {
+              "value": "3h",
+              "name": "Value3H"
+            },
+            {
+              "value": "12h",
+              "name": "Value12H"
+            },
+            {
+              "value": "1d",
+              "name": "Value1D"
+            },
+            {
+              "value": "3d",
+              "name": "Value3D"
+            },
+            {
+              "value": "7d",
+              "name": "Value7D"
+            },
+            {
+              "value": "30d",
+              "name": "Value30D"
+            }
+          ]
+        }
+      },
+      "GetQStashStatsPeriodParameter": {
+        "enum": [
+          "1h",
+          "3h",
+          "12h",
+          "1d",
+          "3d",
+          "7d",
+          "30d"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetQStashStatsPeriodParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "1h",
+              "name": "Value1H"
+            },
+            {
+              "value": "3h",
+              "name": "Value3H"
+            },
+            {
+              "value": "12h",
+              "name": "Value12H"
+            },
+            {
+              "value": "1d",
+              "name": "Value1D"
+            },
+            {
+              "value": "3d",
+              "name": "Value3D"
+            },
+            {
+              "value": "7d",
+              "name": "Value7D"
+            },
+            {
+              "value": "30d",
+              "name": "Value30D"
+            }
+          ]
+        }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "redis",
+      "description": "Manage redis databases.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://upstash.com/docs/devops/developer-api/introduction"
+      }
+    },
+    {
+      "name": "teams",
+      "description": "Manage teams and team members.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://upstash.com/docs/devops/developer-api/introduction"
+      }
+    },
+    {
+      "name": "vector",
+      "description": "Manage vector indices.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://upstash.com/docs/devops/developer-api/introduction"
+      }
+    },
+    {
+      "name": "search",
+      "description": "Manage search indices.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://upstash.com/docs/devops/developer-api/introduction"
+      }
+    },
+    {
+      "name": "qstash",
+      "description": "Manage QStash.",
+      "externalDocs": {
+        "description": "Find out more",
+        "url": "https://upstash.com/docs/devops/developer-api/introduction"
+      }
+    }
+  ],
+  "externalDocs": {
+    "description": "Find out more about Upstash",
+    "url": "https://upstash.com/"
+  }
+}
