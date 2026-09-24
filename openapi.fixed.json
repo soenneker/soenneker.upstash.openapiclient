@@ -43,7 +43,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/list_databases"
+        }
       }
     },
     "/redis/database/{id}": {
@@ -89,7 +92,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/get_database"
+        }
       },
       "delete": {
         "tags": [
@@ -125,7 +131,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/delete_database"
+        }
       }
     },
     "/redis/database": {
@@ -162,7 +171,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/create_database_global"
+        }
       }
     },
     "/redis/rename/{id}": {
@@ -210,7 +222,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/rename_database"
+        }
       }
     },
     "/redis/reset-password/{id}": {
@@ -248,7 +263,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/reset_password"
+        }
       }
     },
     "/redis/enable-tls/{id}": {
@@ -286,7 +304,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/enable_tls"
+        }
       }
     },
     "/redis/enable-eviction/{id}": {
@@ -324,7 +345,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/enable_eviction"
+        }
       }
     },
     "/redis/disable-eviction/{id}": {
@@ -362,7 +386,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/disable_eviction"
+        }
       }
     },
     "/redis/enable-autoupgrade/{id}": {
@@ -400,7 +427,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/enable_autoscaling"
+        }
       }
     },
     "/redis/disable-autoupgrade/{id}": {
@@ -438,7 +468,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/disable_autoscaling"
+        }
       }
     },
     "/redis/{id}/change-plan": {
@@ -486,7 +519,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/change_plan"
+        }
       }
     },
     "/redis/update-budget/{id}": {
@@ -534,7 +570,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/update_budget"
+        }
       }
     },
     "/redis/update-regions/{id}": {
@@ -582,7 +621,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/update_regions"
+        }
       }
     },
     "/redis/move-to-team": {
@@ -619,7 +661,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/moveto_team"
+        }
       }
     },
     "/redis/stats/{id}": {
@@ -657,7 +702,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/get_database_stats"
+        }
       }
     },
     "/redis/list-backup/{id}": {
@@ -695,7 +743,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/backup/list_backup"
+        }
       }
     },
     "/redis/create-backup/{id}": {
@@ -743,7 +794,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/backup/create_backup"
+        }
       }
     },
     "/redis/delete-backup/{id}/{backupId}": {
@@ -790,7 +844,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/backup/delete_backup"
+        }
       }
     },
     "/redis/restore-backup/{id}": {
@@ -838,7 +895,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/backup/restore_backup"
+        }
       }
     },
     "/redis/enable-dailybackup/{id}": {
@@ -876,7 +936,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/backup/enable_dailybackup"
+        }
       }
     },
     "/redis/disable-dailybackup/{id}": {
@@ -914,7 +977,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/redis/backup/disable_dailybackup"
+        }
       }
     },
     "/teams": {
@@ -941,7 +1007,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/teams/list_teams"
+        }
       }
     },
     "/auditlogs": {
@@ -968,7 +1037,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/account/list_audit_logs"
+        }
       },
       "servers": [
         {
@@ -1010,7 +1082,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/teams/create_team"
+        }
       }
     },
     "/team/{id}": {
@@ -1048,7 +1123,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/teams/delete_team"
+        }
       }
     },
     "/teams/{teamId}": {
@@ -1086,7 +1164,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/teams/get_team_members"
+        }
       }
     },
     "/teams/member": {
@@ -1123,7 +1204,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/teams/add_team_member"
+        }
       },
       "delete": {
         "tags": [
@@ -1158,7 +1242,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/teams/delete_team_member"
+        }
       }
     },
     "/vector/index": {
@@ -1185,7 +1272,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/vector/list_indices"
+        }
       },
       "post": {
         "tags": [
@@ -1220,7 +1310,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/vector/create_index"
+        }
       }
     },
     "/vector/index/{id}": {
@@ -1258,7 +1351,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/vector/get_index"
+        }
       },
       "delete": {
         "tags": [
@@ -1294,7 +1390,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/vector/delete_index"
+        }
       }
     },
     "/vector/index/{id}/rename": {
@@ -1342,7 +1441,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/vector/rename_index"
+        }
       }
     },
     "/vector/index/{id}/reset-password": {
@@ -1380,7 +1482,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/vector/reset_index_passwords"
+        }
       }
     },
     "/vector/index/{id}/setplan": {
@@ -1428,7 +1533,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/vector/set_index_plan"
+        }
       }
     },
     "/vector/index/{id}/transfer": {
@@ -1476,7 +1584,10 @@
           {
             "basicAuth": []
           }
-        ]
+        ],
+        "x-mint": {
+          "href": "/devops/developer-api/vector/transfer_index"
+        }
       }
     },
     "/vector/index/stats": {
