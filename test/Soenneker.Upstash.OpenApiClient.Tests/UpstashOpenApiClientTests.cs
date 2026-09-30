@@ -8,7 +8,7 @@ namespace Soenneker.Upstash.OpenApiClient.Tests;
 public sealed class UpstashOpenApiClientTests
 {
     [Test]
-    public async Task List_databases_builds_the_request_and_deserializes_the_response()
+    public async ValueTask List_databases_builds_the_request_and_deserializes_the_response()
     {
         using var handler = new UpstashResponseHandler();
         using var httpClient = new HttpClient(handler);
