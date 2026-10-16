@@ -12,6 +12,14 @@ namespace Soenneker.Upstash.OpenApiClient.Models
     public partial class DatabaseStats : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Logins per ACL user today, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStatsAclUserLoginsItem>? AclUserLogins { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStatsAclUserLoginsItem> AclUserLogins { get; set; }
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Bandwidth usage over time</summary>
@@ -29,6 +37,22 @@ namespace Soenneker.Upstash.OpenApiClient.Models
 #nullable restore
 #else
         public List<global::Soenneker.Upstash.OpenApiClient.Models.CommandCount> CommandCounts { get; set; }
+#endif
+        /// <summary>99th percentile time the engine spent executing commands, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? CommandLatency99 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> CommandLatency99 { get; set; }
+#endif
+        /// <summary>Median time the engine spent executing commands, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? CommandLatencyP50 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> CommandLatencyP50 { get; set; }
 #endif
         /// <summary>Connection count over time</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -72,6 +96,22 @@ namespace Soenneker.Upstash.OpenApiClient.Models
 #else
         public List<string> Days { get; set; }
 #endif
+        /// <summary>99th percentile time to load a key from disk, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? DiskLoadLatency99 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> DiskLoadLatency99 { get; set; }
+#endif
+        /// <summary>Keys loaded from disk per ten-minute window, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? DiskLoads { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> DiskLoads { get; set; }
+#endif
         /// <summary>Disk usage over time</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -104,13 +144,55 @@ namespace Soenneker.Upstash.OpenApiClient.Models
 #else
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> Latency99 { get; set; }
 #endif
-        /// <summary>Average latency over time</summary>
+        /// <summary>Deprecated alias of latency_p50, kept for older clients. Carries the median, not the mean.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? Latencymean { get; set; }
 #nullable restore
 #else
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> Latencymean { get; set; }
+#endif
+        /// <summary>Median (p50) latency over time</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? LatencyP50 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> LatencyP50 { get; set; }
+#endif
+        /// <summary>Overall 90th percentile latency over time, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? LatencyP90 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> LatencyP90 { get; set; }
+#endif
+        /// <summary>99th percentile Lua script latency over time, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? LuaLatency99 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> LuaLatency99 { get; set; }
+#endif
+        /// <summary>Median Lua script latency over time, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? LuaLatencyP50 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> LuaLatencyP50 { get; set; }
+#endif
+        /// <summary>Number of distinct Lua scripts run since midnight UTC, Pro and Production Pack only</summary>
+        public double? LuaScriptCount { get; set; }
+        /// <summary>Most executed Lua scripts since midnight UTC, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.LuaScriptStat>? LuaScripts { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.LuaScriptStat> LuaScripts { get; set; }
 #endif
         /// <summary>Cache misses over time</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -146,13 +228,37 @@ namespace Soenneker.Upstash.OpenApiClient.Models
 #else
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> ReadLatency99 { get; set; }
 #endif
-        /// <summary>Average read latency over time</summary>
+        /// <summary>Deprecated alias of read_latency_p50, kept for older clients. Carries the median, not the mean.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? ReadLatencyMean { get; set; }
 #nullable restore
 #else
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> ReadLatencyMean { get; set; }
+#endif
+        /// <summary>Median (p50) read latency over time</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? ReadLatencyP50 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> ReadLatencyP50 { get; set; }
+#endif
+        /// <summary>Open REST connections over time</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? RestConnCount { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> RestConnCount { get; set; }
+#endif
+        /// <summary>Commands that exceeded the slow threshold today, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.SlowCommandStat>? SlowCommands { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.SlowCommandStat> SlowCommands { get; set; }
 #endif
         /// <summary>Throughput on database connections over time</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -170,12 +276,21 @@ namespace Soenneker.Upstash.OpenApiClient.Models
         public int? TotalMonthlyReadRequests { get; set; }
         /// <summary>Total requests in current month</summary>
         public int? TotalMonthlyRequests { get; set; }
-        /// <summary>Total script requests in current month</summary>
+        /// <summary>Deprecated, always 0. Use daily_script_commands from the Prometheus integration</summary>
+        [Obsolete("")]
         public int? TotalMonthlyScriptRequests { get; set; }
         /// <summary>Total storage used in current month (bytes)</summary>
         public int? TotalMonthlyStorage { get; set; }
         /// <summary>Total write requests in current month</summary>
         public int? TotalMonthlyWriteRequests { get; set; }
+        /// <summary>99th percentile time commands waited for the execution lock, Pro and Production Pack only</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? WaitLatency99 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> WaitLatency99 { get; set; }
+#endif
         /// <summary>Write requests over time</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -192,13 +307,21 @@ namespace Soenneker.Upstash.OpenApiClient.Models
 #else
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> WriteLatency99 { get; set; }
 #endif
-        /// <summary>Average write latency over time</summary>
+        /// <summary>Deprecated alias of write_latency_p50, kept for older clients. Carries the median, not the mean.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? WriteLatencyMean { get; set; }
 #nullable restore
 #else
         public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> WriteLatencyMean { get; set; }
+#endif
+        /// <summary>Median (p50) write latency over time</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>? WriteLatencyP50 { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData> WriteLatencyP50 { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStats"/> and sets the default values.
@@ -225,8 +348,11 @@ namespace Soenneker.Upstash.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "acl_user_logins", n => { AclUserLogins = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStatsAclUserLoginsItem>(global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStatsAclUserLoginsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "bandwidths", n => { Bandwidths = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "command_counts", n => { CommandCounts = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.CommandCount>(global::Soenneker.Upstash.OpenApiClient.Models.CommandCount.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "command_latency_99", n => { CommandLatency99 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "command_latency_p50", n => { CommandLatencyP50 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "connection_count", n => { ConnectionCount = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "current_storage", n => { CurrentStorage = n.GetIntValue(); } },
                 { "daily_net_commands", n => { DailyNetCommands = n.GetIntValue(); } },
@@ -236,17 +362,28 @@ namespace Soenneker.Upstash.OpenApiClient.Models
                 { "dailybilling", n => { Dailybilling = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "dailyrequests", n => { Dailyrequests = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "days", n => { Days = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "disk_load_latency_99", n => { DiskLoadLatency99 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "disk_loads", n => { DiskLoads = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "diskusage", n => { Diskusage = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "hits", n => { Hits = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "keyspace", n => { Keyspace = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "latency_99", n => { Latency99 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "latency_p50", n => { LatencyP50 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "latency_p90", n => { LatencyP90 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "latencymean", n => { Latencymean = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "lua_latency_99", n => { LuaLatency99 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "lua_latency_p50", n => { LuaLatencyP50 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "lua_script_count", n => { LuaScriptCount = n.GetDoubleValue(); } },
+                { "lua_scripts", n => { LuaScripts = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.LuaScriptStat>(global::Soenneker.Upstash.OpenApiClient.Models.LuaScriptStat.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "misses", n => { Misses = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "monitor_count", n => { MonitorCount = n.GetObjectValue<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue); } },
                 { "queue_optimized", n => { QueueOptimized = n.GetBoolValue(); } },
                 { "read", n => { Read = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "read_latency_99", n => { ReadLatency99 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "read_latency_mean", n => { ReadLatencyMean = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "read_latency_p50", n => { ReadLatencyP50 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "rest_conn_count", n => { RestConnCount = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "slow_commands", n => { SlowCommands = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.SlowCommandStat>(global::Soenneker.Upstash.OpenApiClient.Models.SlowCommandStat.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "throughput", n => { Throughput = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "total_monthly_bandwidth", n => { TotalMonthlyBandwidth = n.GetIntValue(); } },
                 { "total_monthly_billing", n => { TotalMonthlyBilling = n.GetFloatValue(); } },
@@ -255,9 +392,11 @@ namespace Soenneker.Upstash.OpenApiClient.Models
                 { "total_monthly_script_requests", n => { TotalMonthlyScriptRequests = n.GetIntValue(); } },
                 { "total_monthly_storage", n => { TotalMonthlyStorage = n.GetIntValue(); } },
                 { "total_monthly_write_requests", n => { TotalMonthlyWriteRequests = n.GetIntValue(); } },
+                { "wait_latency_99", n => { WaitLatency99 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "write", n => { Write = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "write_latency_99", n => { WriteLatency99 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "write_latency_mean", n => { WriteLatencyMean = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "write_latency_p50", n => { WriteLatencyP50 = n.GetCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>(global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -267,8 +406,11 @@ namespace Soenneker.Upstash.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStatsAclUserLoginsItem>("acl_user_logins", AclUserLogins);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("bandwidths", Bandwidths);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.CommandCount>("command_counts", CommandCounts);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("command_latency_99", CommandLatency99);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("command_latency_p50", CommandLatencyP50);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("connection_count", ConnectionCount);
             writer.WriteIntValue("current_storage", CurrentStorage);
             writer.WriteLongValue("dailybandwidth", Dailybandwidth);
@@ -278,17 +420,28 @@ namespace Soenneker.Upstash.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("dailyrequests", Dailyrequests);
             writer.WriteIntValue("daily_write_requests", DailyWriteRequests);
             writer.WriteCollectionOfPrimitiveValues<string>("days", Days);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("disk_load_latency_99", DiskLoadLatency99);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("disk_loads", DiskLoads);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("diskusage", Diskusage);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("hits", Hits);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("keyspace", Keyspace);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("latency_99", Latency99);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("latencymean", Latencymean);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("latency_p50", LatencyP50);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("latency_p90", LatencyP90);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("lua_latency_99", LuaLatency99);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("lua_latency_p50", LuaLatencyP50);
+            writer.WriteDoubleValue("lua_script_count", LuaScriptCount);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.LuaScriptStat>("lua_scripts", LuaScripts);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("misses", Misses);
             writer.WriteObjectValue<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("monitor_count", MonitorCount);
             writer.WriteBoolValue("queue_optimized", QueueOptimized);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("read", Read);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("read_latency_99", ReadLatency99);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("read_latency_mean", ReadLatencyMean);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("read_latency_p50", ReadLatencyP50);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("rest_conn_count", RestConnCount);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.SlowCommandStat>("slow_commands", SlowCommands);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("throughput", Throughput);
             writer.WriteIntValue("total_monthly_bandwidth", TotalMonthlyBandwidth);
             writer.WriteFloatValue("total_monthly_billing", TotalMonthlyBilling);
@@ -297,9 +450,11 @@ namespace Soenneker.Upstash.OpenApiClient.Models
             writer.WriteIntValue("total_monthly_script_requests", TotalMonthlyScriptRequests);
             writer.WriteIntValue("total_monthly_storage", TotalMonthlyStorage);
             writer.WriteIntValue("total_monthly_write_requests", TotalMonthlyWriteRequests);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("wait_latency_99", WaitLatency99);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("write", Write);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("write_latency_99", WriteLatency99);
             writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("write_latency_mean", WriteLatencyMean);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.Upstash.OpenApiClient.Models.TimeSeriesData>("write_latency_p50", WriteLatencyP50);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

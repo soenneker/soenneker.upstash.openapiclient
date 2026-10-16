@@ -22,7 +22,7 @@ namespace Soenneker.Upstash.OpenApiClient.Redis.Stats.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public StatsItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/redis/stats/{id}", pathParameters)
+        public StatsItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/redis/stats/{id}{?period*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.Upstash.OpenApiClient.Redis.Stats.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public StatsItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/redis/stats/{id}", rawUrl)
+        public StatsItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/redis/stats/{id}{?period*}", rawUrl)
         {
         }
         /// <summary>
@@ -41,11 +41,11 @@ namespace Soenneker.Upstash.OpenApiClient.Redis.Stats.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStats?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStats?> GetAsync(Action<RequestConfiguration<global::Soenneker.Upstash.OpenApiClient.Redis.Stats.Item.StatsItemRequestBuilder.StatsItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStats> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseStats> GetAsync(Action<RequestConfiguration<global::Soenneker.Upstash.OpenApiClient.Redis.Stats.Item.StatsItemRequestBuilder.StatsItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -58,11 +58,11 @@ namespace Soenneker.Upstash.OpenApiClient.Redis.Stats.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Upstash.OpenApiClient.Redis.Stats.Item.StatsItemRequestBuilder.StatsItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.Upstash.OpenApiClient.Redis.Stats.Item.StatsItemRequestBuilder.StatsItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -78,6 +78,23 @@ namespace Soenneker.Upstash.OpenApiClient.Redis.Stats.Item
         public global::Soenneker.Upstash.OpenApiClient.Redis.Stats.Item.StatsItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.Upstash.OpenApiClient.Redis.Stats.Item.StatsItemRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// This endpoint gets detailed stats of a database.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class StatsItemRequestBuilderGetQueryParameters 
+        {
+            /// <summary>Period the time series cover: 1h, 3h, 12h, 1d, 3d, 7d or 30d. Defaults to 1h. 30d is only available for databases on a Pro plan or with the Production Pack.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("period")]
+            public string? Period { get; set; }
+#nullable restore
+#else
+            [QueryParameter("period")]
+            public string Period { get; set; }
+#endif
         }
     }
 }

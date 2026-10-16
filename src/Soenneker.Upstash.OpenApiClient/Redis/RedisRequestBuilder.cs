@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.Upstash.OpenApiClient.Redis.BackupAnalysis;
 using Soenneker.Upstash.OpenApiClient.Redis.CreateBackup;
 using Soenneker.Upstash.OpenApiClient.Redis.Database;
 using Soenneker.Upstash.OpenApiClient.Redis.Databases;
@@ -13,6 +14,7 @@ using Soenneker.Upstash.OpenApiClient.Redis.EnableAutoupgrade;
 using Soenneker.Upstash.OpenApiClient.Redis.EnableDailybackup;
 using Soenneker.Upstash.OpenApiClient.Redis.EnableEviction;
 using Soenneker.Upstash.OpenApiClient.Redis.EnableTls;
+using Soenneker.Upstash.OpenApiClient.Redis.Insights;
 using Soenneker.Upstash.OpenApiClient.Redis.Item;
 using Soenneker.Upstash.OpenApiClient.Redis.ListBackup;
 using Soenneker.Upstash.OpenApiClient.Redis.MoveToTeam;
@@ -20,6 +22,7 @@ using Soenneker.Upstash.OpenApiClient.Redis.Rename;
 using Soenneker.Upstash.OpenApiClient.Redis.ResetPassword;
 using Soenneker.Upstash.OpenApiClient.Redis.RestoreBackup;
 using Soenneker.Upstash.OpenApiClient.Redis.Stats;
+using Soenneker.Upstash.OpenApiClient.Redis.Traffic;
 using Soenneker.Upstash.OpenApiClient.Redis.UpdateBudget;
 using Soenneker.Upstash.OpenApiClient.Redis.UpdateRegions;
 using System.Collections.Generic;
@@ -34,6 +37,11 @@ namespace Soenneker.Upstash.OpenApiClient.Redis
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RedisRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The backupAnalysis property</summary>
+        public global::Soenneker.Upstash.OpenApiClient.Redis.BackupAnalysis.BackupAnalysisRequestBuilder BackupAnalysis
+        {
+            get => new global::Soenneker.Upstash.OpenApiClient.Redis.BackupAnalysis.BackupAnalysisRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The createBackup property</summary>
         public global::Soenneker.Upstash.OpenApiClient.Redis.CreateBackup.CreateBackupRequestBuilder CreateBackup
         {
@@ -89,6 +97,11 @@ namespace Soenneker.Upstash.OpenApiClient.Redis
         {
             get => new global::Soenneker.Upstash.OpenApiClient.Redis.EnableTls.EnableTlsRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The insights property</summary>
+        public global::Soenneker.Upstash.OpenApiClient.Redis.Insights.InsightsRequestBuilder Insights
+        {
+            get => new global::Soenneker.Upstash.OpenApiClient.Redis.Insights.InsightsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The listBackup property</summary>
         public global::Soenneker.Upstash.OpenApiClient.Redis.ListBackup.ListBackupRequestBuilder ListBackup
         {
@@ -118,6 +131,11 @@ namespace Soenneker.Upstash.OpenApiClient.Redis
         public global::Soenneker.Upstash.OpenApiClient.Redis.Stats.StatsRequestBuilder Stats
         {
             get => new global::Soenneker.Upstash.OpenApiClient.Redis.Stats.StatsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The traffic property</summary>
+        public global::Soenneker.Upstash.OpenApiClient.Redis.Traffic.TrafficRequestBuilder Traffic
+        {
+            get => new global::Soenneker.Upstash.OpenApiClient.Redis.Traffic.TrafficRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The updateBudget property</summary>
         public global::Soenneker.Upstash.OpenApiClient.Redis.UpdateBudget.UpdateBudgetRequestBuilder UpdateBudget
