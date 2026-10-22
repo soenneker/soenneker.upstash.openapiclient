@@ -30,14 +30,6 @@ namespace Soenneker.Upstash.OpenApiClient.Models
         public bool? Consistent { get; set; }
         /// <summary>Creation time of the database as Unix time</summary>
         public long? CreationTime { get; set; }
-        /// <summary>Owner identifier of the database (may be email or marketplace-scoped email)</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CustomerId { get; set; }
-#nullable restore
-#else
-        public string CustomerId { get; set; }
-#endif
         /// <summary>Whether daily backup is enabled</summary>
         public bool? DailyBackupEnabled { get; set; }
         /// <summary>ID of the database</summary>
@@ -56,12 +48,22 @@ namespace Soenneker.Upstash.OpenApiClient.Models
 #else
         public string DatabaseName { get; set; }
 #endif
+        /// <summary>Pricing model of the database, one of `free`, `Pay as You Go` or `Enterprise`</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? DatabaseType { get; set; }
+#nullable restore
+#else
+        public string DatabaseType { get; set; }
+#endif
         /// <summary>Default user access status in ACL</summary>
         public global::Soenneker.Upstash.OpenApiClient.Models.DatabaseDbAclDefaultUserStatus? DbAclDefaultUserStatus { get; set; }
         /// <summary>Access Control List enabled status</summary>
         public global::Soenneker.Upstash.OpenApiClient.Models.DatabaseDbAclEnabled? DbAclEnabled { get; set; }
         /// <summary>Connection idle timeout in nanoseconds</summary>
         public long? DbConnIdleTimeout { get; set; }
+        /// <summary>Daily bandwidth limit for the database (in bytes). The response can omit this field.</summary>
+        public long? DbDailyBandwidthLimit { get; set; }
         /// <summary>Total disk size limit that can be used for the database currently(in bytes)</summary>
         public long? DbDiskThreshold { get; set; }
         /// <summary>Database-level eviction policy status</summary>
@@ -110,6 +112,14 @@ namespace Soenneker.Upstash.OpenApiClient.Models
 #else
         public string ModifyingState { get; set; }
 #endif
+        /// <summary>Password of the database. Omitted when credential protection is on, when you pass the `credentials=hide` query parameter to Get Database, or when the API key or your team role is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Password { get; set; }
+#nullable restore
+#else
+        public string Password { get; set; }
+#endif
         /// <summary>Database port for clients to connect</summary>
         public long? Port { get; set; }
         /// <summary>List of primary regions in the database cluster</summary>
@@ -126,6 +136,14 @@ namespace Soenneker.Upstash.OpenApiClient.Models
         public bool? ProdPackEnabled { get; set; }
         /// <summary>Prometheus integration enabled status</summary>
         public global::Soenneker.Upstash.OpenApiClient.Models.DatabasePrometheusEnabled? PrometheusEnabled { get; set; }
+        /// <summary>Read-only REST token for the database. Omitted when credential protection is on, or when you pass the `credentials=hide` query parameter to Get Database.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ReadOnlyRestToken { get; set; }
+#nullable restore
+#else
+        public string ReadOnlyRestToken { get; set; }
+#endif
         /// <summary>Array of read regions of the database</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -138,6 +156,14 @@ namespace Soenneker.Upstash.OpenApiClient.Models
         public global::Soenneker.Upstash.OpenApiClient.Models.GlobalRegion? Region { get; set; }
         /// <summary>Replica factor of the database</summary>
         public int? Replicas { get; set; }
+        /// <summary>REST token for the database. Omitted when credential protection is on, when you pass the `credentials=hide` query parameter to Get Database, or when the API key or your team role is read-only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RestToken { get; set; }
+#nullable restore
+#else
+        public string RestToken { get; set; }
+#endif
         /// <summary>Security add-ons and their enablement status</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -152,6 +178,14 @@ namespace Soenneker.Upstash.OpenApiClient.Models
         public bool? Tls { get; set; }
         /// <summary>Payment plan of the database</summary>
         public global::Soenneker.Upstash.OpenApiClient.Models.DatabaseType? Type { get; set; }
+        /// <summary>Owner identifier of the database (may be email or marketplace-scoped email)</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? UserEmail { get; set; }
+#nullable restore
+#else
+        public string UserEmail { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.Upstash.OpenApiClient.Models.Database"/> and sets the default values.
         /// </summary>
@@ -182,13 +216,14 @@ namespace Soenneker.Upstash.OpenApiClient.Models
                 { "budget", n => { Budget = n.GetLongValue(); } },
                 { "consistent", n => { Consistent = n.GetBoolValue(); } },
                 { "creation_time", n => { CreationTime = n.GetLongValue(); } },
-                { "customer_id", n => { CustomerId = n.GetStringValue(); } },
                 { "daily_backup_enabled", n => { DailyBackupEnabled = n.GetBoolValue(); } },
                 { "database_id", n => { DatabaseId = n.GetStringValue(); } },
                 { "database_name", n => { DatabaseName = n.GetStringValue(); } },
+                { "database_type", n => { DatabaseType = n.GetStringValue(); } },
                 { "db_acl_default_user_status", n => { DbAclDefaultUserStatus = n.GetEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseDbAclDefaultUserStatus>(); } },
                 { "db_acl_enabled", n => { DbAclEnabled = n.GetEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseDbAclEnabled>(); } },
                 { "db_conn_idle_timeout", n => { DbConnIdleTimeout = n.GetLongValue(); } },
+                { "db_daily_bandwidth_limit", n => { DbDailyBandwidthLimit = n.GetLongValue(); } },
                 { "db_disk_threshold", n => { DbDiskThreshold = n.GetLongValue(); } },
                 { "db_eviction", n => { DbEviction = n.GetBoolValue(); } },
                 { "db_lua_credits_per_min", n => { DbLuaCreditsPerMin = n.GetLongValue(); } },
@@ -207,18 +242,22 @@ namespace Soenneker.Upstash.OpenApiClient.Models
                 { "eviction", n => { Eviction = n.GetBoolValue(); } },
                 { "last_plan_upgrade_time", n => { LastPlanUpgradeTime = n.GetLongValue(); } },
                 { "modifying_state", n => { ModifyingState = n.GetStringValue(); } },
+                { "password", n => { Password = n.GetStringValue(); } },
                 { "port", n => { Port = n.GetLongValue(); } },
                 { "primary_members", n => { PrimaryMembers = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "primary_region", n => { PrimaryRegion = n.GetEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabasePrimaryRegion>(); } },
                 { "prod_pack_enabled", n => { ProdPackEnabled = n.GetBoolValue(); } },
                 { "prometheus_enabled", n => { PrometheusEnabled = n.GetEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabasePrometheusEnabled>(); } },
+                { "read_only_rest_token", n => { ReadOnlyRestToken = n.GetStringValue(); } },
                 { "read_regions", n => { ReadRegions = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "region", n => { Region = n.GetEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.GlobalRegion>(); } },
                 { "replicas", n => { Replicas = n.GetIntValue(); } },
+                { "rest_token", n => { RestToken = n.GetStringValue(); } },
                 { "securityAddons", n => { SecurityAddons = n.GetObjectValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseSecurityAddons>(global::Soenneker.Upstash.OpenApiClient.Models.DatabaseSecurityAddons.CreateFromDiscriminatorValue); } },
                 { "state", n => { State = n.GetEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseState>(); } },
                 { "tls", n => { Tls = n.GetBoolValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseType>(); } },
+                { "user_email", n => { UserEmail = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -233,13 +272,14 @@ namespace Soenneker.Upstash.OpenApiClient.Models
             writer.WriteLongValue("budget", Budget);
             writer.WriteBoolValue("consistent", Consistent);
             writer.WriteLongValue("creation_time", CreationTime);
-            writer.WriteStringValue("customer_id", CustomerId);
             writer.WriteBoolValue("daily_backup_enabled", DailyBackupEnabled);
             writer.WriteStringValue("database_id", DatabaseId);
             writer.WriteStringValue("database_name", DatabaseName);
+            writer.WriteStringValue("database_type", DatabaseType);
             writer.WriteEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseDbAclDefaultUserStatus>("db_acl_default_user_status", DbAclDefaultUserStatus);
             writer.WriteEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseDbAclEnabled>("db_acl_enabled", DbAclEnabled);
             writer.WriteLongValue("db_conn_idle_timeout", DbConnIdleTimeout);
+            writer.WriteLongValue("db_daily_bandwidth_limit", DbDailyBandwidthLimit);
             writer.WriteLongValue("db_disk_threshold", DbDiskThreshold);
             writer.WriteBoolValue("db_eviction", DbEviction);
             writer.WriteLongValue("db_lua_credits_per_min", DbLuaCreditsPerMin);
@@ -258,18 +298,22 @@ namespace Soenneker.Upstash.OpenApiClient.Models
             writer.WriteBoolValue("eviction", Eviction);
             writer.WriteLongValue("last_plan_upgrade_time", LastPlanUpgradeTime);
             writer.WriteStringValue("modifying_state", ModifyingState);
+            writer.WriteStringValue("password", Password);
             writer.WriteLongValue("port", Port);
             writer.WriteCollectionOfPrimitiveValues<string>("primary_members", PrimaryMembers);
             writer.WriteEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabasePrimaryRegion>("primary_region", PrimaryRegion);
             writer.WriteBoolValue("prod_pack_enabled", ProdPackEnabled);
             writer.WriteEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabasePrometheusEnabled>("prometheus_enabled", PrometheusEnabled);
+            writer.WriteStringValue("read_only_rest_token", ReadOnlyRestToken);
             writer.WriteCollectionOfPrimitiveValues<string>("read_regions", ReadRegions);
             writer.WriteEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.GlobalRegion>("region", Region);
             writer.WriteIntValue("replicas", Replicas);
+            writer.WriteStringValue("rest_token", RestToken);
             writer.WriteObjectValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseSecurityAddons>("securityAddons", SecurityAddons);
             writer.WriteEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseState>("state", State);
             writer.WriteBoolValue("tls", Tls);
             writer.WriteEnumValue<global::Soenneker.Upstash.OpenApiClient.Models.DatabaseType>("type", Type);
+            writer.WriteStringValue("user_email", UserEmail);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

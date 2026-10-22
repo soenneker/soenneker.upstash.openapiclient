@@ -2628,6 +2628,11 @@
             "description": "Name of the database",
             "example": "MyRedis"
           },
+          "database_type": {
+            "type": "string",
+            "description": "Pricing model of the database, one of \u0060free\u0060, \u0060Pay as You Go\u0060 or \u0060Enterprise\u0060",
+            "example": "Pay as You Go"
+          },
           "region": {
             "$ref": "#/components/schemas/GlobalRegion"
           },
@@ -2651,10 +2656,27 @@
             "description": "Endpoint identifier or hostname of the database (may be a slug like \u0022beloved-stallion-58500\u0022 or a full host)",
             "example": "beloved-stallion-58500"
           },
+          "rest_token": {
+            "type": "string",
+            "description": "REST token for the database. Omitted when credential protection is on, when you pass the \u0060credentials=hide\u0060 query parameter to Get Database, or when the API key or your team role is read-only."
+          },
+          "read_only_rest_token": {
+            "type": "string",
+            "description": "Read-only REST token for the database. Omitted when credential protection is on, or when you pass the \u0060credentials=hide\u0060 query parameter to Get Database."
+          },
+          "password": {
+            "type": "string",
+            "description": "Password of the database. Omitted when credential protection is on, when you pass the \u0060credentials=hide\u0060 query parameter to Get Database, or when the API key or your team role is read-only."
+          },
           "tls": {
             "type": "boolean",
             "description": "TLS/SSL is enabled or not",
             "example": true
+          },
+          "db_daily_bandwidth_limit": {
+            "type": "integer",
+            "description": "Daily bandwidth limit for the database (in bytes). The response can omit this field.",
+            "format": "int64"
           },
           "db_max_clients": {
             "type": "integer",
@@ -2801,7 +2823,7 @@
             "description": "Replica factor of the database",
             "example": 5
           },
-          "customer_id": {
+          "user_email": {
             "type": "string",
             "description": "Owner identifier of the database (may be email or marketplace-scoped email)",
             "example": "example@upstash.com"
