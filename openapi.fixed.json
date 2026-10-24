@@ -2737,14 +2737,20 @@
             "items": {
               "type": "string"
             },
-            "description": "List of primary regions in the database cluster"
+            "description": "List of primary regions in the database cluster",
+            "example": [
+              "us-east-1"
+            ]
           },
           "all_members": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "List of all regions in the database cluster"
+            "description": "List of all regions in the database cluster",
+            "example": [
+              "us-east-1"
+            ]
           },
           "eviction": {
             "type": "boolean",
@@ -2763,7 +2769,8 @@
           },
           "modifying_state": {
             "type": "string",
-            "description": "Current modifying state of the database"
+            "description": "Current modifying state of the database",
+            "example": ""
           },
           "db_resource_size": {
             "$ref": "#/components/schemas/DatabaseDbResourceSize"
@@ -2838,7 +2845,10 @@
             "items": {
               "type": "string"
             },
-            "description": "Array of read regions of the database"
+            "description": "Array of read regions of the database",
+            "example": [
+              "us-east-2"
+            ]
           },
           "securityAddons": {
             "$ref": "#/components/schemas/DatabaseSecurityAddons"
@@ -2880,7 +2890,11 @@
             "items": {
               "$ref": "#/components/schemas/CreateDatabaseRequestReadRegionsItem"
             },
-            "description": "Array of Read Regions of the Database"
+            "description": "Array of Read Regions of the Database",
+            "example": [
+              "us-west-1",
+              "us-west-2"
+            ]
           },
           "plan": {
             "$ref": "#/components/schemas/CreateDatabaseRequestPlan"
@@ -2954,140 +2968,269 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Connection count over time"
+            "description": "Connection count over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "keyspace": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Total number of keys in the database over time"
+            "description": "Total number of keys in the database over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "throughput": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Throughput on database connections over time"
+            "description": "Throughput on database connections over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "diskusage": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Disk usage over time"
+            "description": "Disk usage over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "latency_p50": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Median (p50) latency over time"
+            "description": "Median (p50) latency over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "latencymean": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Deprecated alias of latency_p50, kept for older clients. Carries the median, not the mean."
+            "description": "Deprecated alias of latency_p50, kept for older clients. Carries the median, not the mean.",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile latency over time"
+            "description": "99th percentile latency over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "read_latency_p50": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Median (p50) read latency over time"
+            "description": "Median (p50) read latency over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "read_latency_mean": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Deprecated alias of read_latency_p50, kept for older clients. Carries the median, not the mean."
+            "description": "Deprecated alias of read_latency_p50, kept for older clients. Carries the median, not the mean.",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "read_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile read latency over time"
+            "description": "99th percentile read latency over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "write_latency_p50": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Median (p50) write latency over time"
+            "description": "Median (p50) write latency over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "write_latency_mean": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Deprecated alias of write_latency_p50, kept for older clients. Carries the median, not the mean."
+            "description": "Deprecated alias of write_latency_p50, kept for older clients. Carries the median, not the mean.",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "write_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile write latency over time"
+            "description": "99th percentile write latency over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "hits": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Cache hits over time"
+            "description": "Cache hits over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "misses": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Cache misses over time"
+            "description": "Cache misses over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "read": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Read requests over time"
+            "description": "Read requests over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "write": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Write requests over time"
+            "description": "Write requests over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "dailyrequests": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Daily requests over time"
+            "description": "Daily requests over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              },
+              {
+                "x": "2025-09-04 15:12:52.76649148 \u002B0000 UTC",
+                "y": 7
+              }
+            ]
           },
           "days": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Days of the week for measurement"
+            "description": "Days of the week for measurement",
+            "example": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday"
+            ]
           },
           "dailybilling": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Daily billing amounts over time"
+            "description": "Daily billing amounts over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              },
+              {
+                "x": "2025-09-04 15:12:52.76649148 \u002B0000 UTC",
+                "y": 1.333
+              }
+            ]
           },
           "dailybandwidth": {
             "type": "integer",
@@ -3100,7 +3243,17 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Bandwidth usage over time"
+            "description": "Bandwidth usage over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              },
+              {
+                "x": "2025-09-04 15:12:52.76649148 \u002B0000 UTC",
+                "y": 7
+              }
+            ]
           },
           "total_monthly_bandwidth": {
             "type": "integer",
@@ -3154,63 +3307,117 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Open REST connections over time"
+            "description": "Open REST connections over time",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "latency_p90": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Overall 90th percentile latency over time, Pro and Production Pack only"
+            "description": "Overall 90th percentile latency over time, Pro and Production Pack only",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "command_latency_p50": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Median time the engine spent executing commands, Pro and Production Pack only"
+            "description": "Median time the engine spent executing commands, Pro and Production Pack only",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "command_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile time the engine spent executing commands, Pro and Production Pack only"
+            "description": "99th percentile time the engine spent executing commands, Pro and Production Pack only",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "wait_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile time commands waited for the execution lock, Pro and Production Pack only"
+            "description": "99th percentile time commands waited for the execution lock, Pro and Production Pack only",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "disk_load_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile time to load a key from disk, Pro and Production Pack only"
+            "description": "99th percentile time to load a key from disk, Pro and Production Pack only",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "disk_loads": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Keys loaded from disk per ten-minute window, Pro and Production Pack only"
+            "description": "Keys loaded from disk per ten-minute window, Pro and Production Pack only",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "lua_latency_p50": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Median Lua script latency over time, Pro and Production Pack only"
+            "description": "Median Lua script latency over time, Pro and Production Pack only",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "lua_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile Lua script latency over time, Pro and Production Pack only"
+            "description": "99th percentile Lua script latency over time, Pro and Production Pack only",
+            "example": [
+              {
+                "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "lua_scripts": {
             "type": "array",
@@ -3242,7 +3449,18 @@
             "items": {
               "$ref": "#/components/schemas/CommandCount"
             },
-            "description": "Command-specific counts over time"
+            "description": "Command-specific counts over time",
+            "example": [
+              {
+                "metric_identifier": "EXISTS",
+                "data_points": [
+                  {
+                    "x": "2025-08-31 15:12:52.799480932 \u002B0000 UTC",
+                    "y": 0
+                  }
+                ]
+              }
+            ]
           }
         }
       },
@@ -3645,7 +3863,8 @@
           },
           "internal_backup_tag": {
             "type": "string",
-            "description": "Internal backup tag"
+            "description": "Internal backup tag",
+            "example": ""
           }
         },
         "xml": {
@@ -3703,11 +3922,13 @@
           },
           "third_entity": {
             "type": "string",
-            "description": "A tertiary entity affected, \u0022\u0022 or \u0022NA\u0022 if not applicable"
+            "description": "A tertiary entity affected, \u0022\u0022 or \u0022NA\u0022 if not applicable",
+            "example": ""
           },
           "readable_format": {
             "type": "string",
-            "description": "formatted string for display purposes"
+            "description": "formatted string for display purposes",
+            "example": ""
           },
           "ip": {
             "type": "string",
@@ -3723,11 +3944,13 @@
           },
           "reason": {
             "type": "string",
-            "description": "The reason for the action, if provided"
+            "description": "The reason for the action, if provided",
+            "example": ""
           },
           "notes": {
             "type": "string",
-            "description": "Additional notes regarding the action"
+            "description": "Additional notes regarding the action",
+            "example": ""
           }
         },
         "xml": {
@@ -3965,7 +4188,17 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Throughput data for the vector index over time"
+            "description": "Throughput data for the vector index over time",
+            "example": [
+              {
+                "x": "2025-09-04 14:55:00.000 \u002B0000 UTC",
+                "y": 0
+              },
+              {
+                "x": "2025-09-04 14:56:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           }
         },
         "xml": {
@@ -4026,98 +4259,183 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Daily update requests over time"
+            "description": "Daily update requests over time",
+            "example": [
+              {
+                "x": "2025-10-19 18:33:05.244068975 \u002B0000 UTC",
+                "y": 1
+              }
+            ]
           },
           "daily_query_requests": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Daily query requests over time"
+            "description": "Daily query requests over time",
+            "example": [
+              {
+                "x": "2025-10-19 18:33:05.244068975 \u002B0000 UTC",
+                "y": 7
+              }
+            ]
           },
           "daily_bandwidths": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Daily bandwidth usage over time"
+            "description": "Daily bandwidth usage over time",
+            "example": [
+              {
+                "x": "2025-10-19 18:33:05.244068975 \u002B0000 UTC",
+                "y": 7
+              }
+            ]
           },
           "days": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Days of the week for measurement"
+            "description": "Days of the week for measurement",
+            "example": [
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday"
+            ]
           },
           "query_throughput": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Query throughput over time"
+            "description": "Query throughput over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 7
+              }
+            ]
           },
           "update_throughput": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Update throughput over time"
+            "description": "Update throughput over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 7
+              }
+            ]
           },
           "query_latency_mean": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Average query latency over time"
+            "description": "Average query latency over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "query_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile query latency over time"
+            "description": "99th percentile query latency over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "update_latency_mean": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Average update latency over time"
+            "description": "Average update latency over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "update_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile update latency over time"
+            "description": "99th percentile update latency over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "embeds_latency_mean": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Average embedding latency over time"
+            "description": "Average embedding latency over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "embeds_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile embedding latency over time"
+            "description": "99th percentile embedding latency over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "vector_count": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Vector count over time"
+            "description": "Vector count over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:35:00.000 \u002B0000 UTC",
+                "y": 2
+              }
+            ]
           },
           "data_size": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Data size over time"
+            "description": "Data size over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:35:00.000 \u002B0000 UTC",
+                "y": 76
+              }
+            ]
           },
           "daily_rerank_count": {
             "type": "integer",
@@ -4134,21 +4452,39 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Daily rerank requests over time"
+            "description": "Daily rerank requests over time",
+            "example": [
+              {
+                "x": "2025-10-19 18:33:05.244068975 \u002B0000 UTC",
+                "y": 1
+              }
+            ]
           },
           "rerank_latency_mean": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Average rerank latency over time"
+            "description": "Average rerank latency over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "rerank_latency_99": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "99th percentile rerank latency over time"
+            "description": "99th percentile rerank latency over time",
+            "example": [
+              {
+                "x": "2025-10-23 17:34:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           }
         }
       },
@@ -4258,7 +4594,13 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Throughput metrics over time"
+            "description": "Throughput metrics over time",
+            "example": [
+              {
+                "x": "2025-10-23 20:54:00.000 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           }
         }
       },
@@ -4446,7 +4788,8 @@
           },
           "reserved_type": {
             "type": "string",
-            "description": "Fixed-tier or enterprise label when applicable. May be empty/absent for non-fixed plans.\nKnown values include \u0060qstash_fixed_1m\u0060, \u0060qstash_fixed_10m\u0060, \u0060qstash_fixed_100m\u0060, \u0060qstash_fixed\u0060.\nEnterprise accounts may use the prefix \u0060enterprise:\u0060 followed by an identifier (e.g. \u0060enterprise:acme\u0060).\n"
+            "description": "Fixed-tier or enterprise label when applicable. May be empty/absent for non-fixed plans.\nKnown values include \u0060qstash_fixed_1m\u0060, \u0060qstash_fixed_10m\u0060, \u0060qstash_fixed_100m\u0060, \u0060qstash_fixed\u0060.\nEnterprise accounts may use the prefix \u0060enterprise:\u0060 followed by an identifier (e.g. \u0060enterprise:acme\u0060).\n",
+            "example": ""
           },
           "reserved_price": {
             "type": "integer",
@@ -4488,56 +4831,127 @@
             "items": {
               "type": "string"
             },
-            "description": "Array of day names for the measurement period, typically representing all days in the current month.\nThis includes both past and future dates within the current month, so the array covers the entire month regardless of the current day.\nFuture days are included to align with other daily metrics arrays, allowing for consistent indexing.\n"
+            "description": "Array of day names for the measurement period, typically representing all days in the current month.\nThis includes both past and future dates within the current month, so the array covers the entire month regardless of the current day.\nFuture days are included to align with other daily metrics arrays, allowing for consistent indexing.\n",
+            "example": [
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday",
+              "Monday",
+              "Tuesday"
+            ]
           },
           "daily_requests": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/QStashStatsDailyRequestsItem"
             },
-            "description": "Daily request metrics including workflow breakdowns"
+            "description": "Daily request metrics including workflow breakdowns",
+            "example": [
+              {
+                "x": "2025-10-01 11:33:05.585757103 \u002B0000 UTC",
+                "y": 0,
+                "workflow_message": 0,
+                "workflow_run": 0
+              }
+            ]
           },
           "daily_billings": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Daily billing amounts over time"
+            "description": "Daily billing amounts over time",
+            "example": [
+              {
+                "x": "2025-10-01 11:33:05.585757103 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "daily_bandwidths": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Daily bandwidth usage over time"
+            "description": "Daily bandwidth usage over time",
+            "example": [
+              {
+                "x": "2025-10-01 11:33:05.585757103 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "daily_used": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Request counts for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+            "description": "Request counts for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n",
+            "example": [
+              {
+                "x": "2025-10-01 11:33:05.585757103 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "daily_used_workflow": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Workflow usage metrics for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+            "description": "Workflow usage metrics for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n",
+            "example": [
+              {
+                "x": "2025-10-01 11:33:05.585757103 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "daily_qstash_messages": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesWithId"
             },
-            "description": "QStash message counts broken down by metric identifier for the requested time period.\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+            "description": "QStash message counts broken down by metric identifier for the requested time period.\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n",
+            "example": [
+              {
+                "id": "delivered",
+                "data_points": [
+                  {
+                    "x": "2023-05-22 10:59:23.426 \u002B0000 UTC",
+                    "y": 320
+                  },
+                  {
+                    "x": "2023-05-22 11:00:23.426 \u002B0000 UTC",
+                    "y": 450
+                  }
+                ]
+              }
+            ]
           },
           "daily_workflow_messages": {
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TimeSeriesWithId"
             },
-            "description": "Workflow metrics broken down by metric identifier for the requested time period.\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+            "description": "Workflow metrics broken down by metric identifier for the requested time period.\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n",
+            "example": [
+              {
+                "id": "canceled",
+                "data_points": [
+                  {
+                    "x": "2023-05-22 10:59:23.426 \u002B0000 UTC",
+                    "y": 320
+                  },
+                  {
+                    "x": "2023-05-22 11:00:23.426 \u002B0000 UTC",
+                    "y": 450
+                  }
+                ]
+              }
+            ]
           },
           "dlq_message_count": {
             "type": "integer",
@@ -4549,7 +4963,13 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Bandwidth usage for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n"
+            "description": "Bandwidth usage for the requested time period\nIf 1h is specified, it shows 60 data points for every 1 minute within the last 1 hour.\n",
+            "example": [
+              {
+                "x": "2025-10-01 11:33:05.585757103 \u002B0000 UTC",
+                "y": 0
+              }
+            ]
           },
           "total_monthly_billing": {
             "type": "number",
@@ -4572,7 +4992,17 @@
             "items": {
               "$ref": "#/components/schemas/TimeSeriesData"
             },
-            "description": "Data points for the time series"
+            "description": "Data points for the time series",
+            "example": [
+              {
+                "x": "2023-05-22 10:59:23.426 \u002B0000 UTC",
+                "y": 320
+              },
+              {
+                "x": "2023-05-22 11:00:23.426 \u002B0000 UTC",
+                "y": 450
+              }
+            ]
           }
         }
       },
@@ -4938,7 +5368,11 @@
             "items": {
               "$ref": "#/components/schemas/UpdateRegionsRequestReadRegionsItem"
             },
-            "description": "Array of Read Regions of the Database"
+            "description": "Array of Read Regions of the Database",
+            "example": [
+              "us-west-1",
+              "us-west-2"
+            ]
           }
         }
       },
@@ -5208,7 +5642,11 @@
         "type": "array",
         "items": {
           "type": "string"
-        }
+        },
+        "example": [
+          "3.125.136.186/32",
+          "18.198.95.233/32"
+        ]
       },
       "MoveQStashToTeamRequest": {
         "required": [
@@ -5269,31 +5707,40 @@
         }
       },
       "DeleteDatabase200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "EnableEviction200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "DisableEviction200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "EnableAutoUpgrade200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "DisableAutoUpgrade200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "ChangePlan200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "UpdateBudget200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "UpdateRegions200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "MoveToTeam200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "ListBackup200ResponseSchema": {
         "type": "array",
@@ -5302,19 +5749,24 @@
         }
       },
       "CreateBackup200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "DeleteBackup200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "RestoreBackup200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "EnableDailyBackup200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "DisableDailyBackup200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "ListTeams200ResponseSchema": {
         "type": "array",
@@ -5329,7 +5781,8 @@
         }
       },
       "DeleteTeam200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "GetTeamMembers200ResponseSchema": {
         "type": "array",
@@ -5338,7 +5791,8 @@
         }
       },
       "DeleteTeamMember200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "ListIndices200ResponseSchema": {
         "type": "array",
@@ -5347,19 +5801,24 @@
         }
       },
       "DeleteIndex200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "RenameIndex200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "ResetIndexPasswords200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "SetIndexPlan200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "TransferIndex200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "ListSearchIndexes200ResponseSchema": {
         "type": "array",
@@ -5368,16 +5827,20 @@
         }
       },
       "DeleteSearchIndex200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "ResetSearchPassword200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "TransferSearchIndex200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "RenameSearchIndex200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "ListQStashUsers200ResponseSchema": {
         "type": "array",
@@ -5386,25 +5849,34 @@
         }
       },
       "SetQStashPlan200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "GetQStashIPv4200ResponseSchema": {
         "type": "array",
         "items": {
           "type": "string"
-        }
+        },
+        "example": [
+          "3.125.136.186/32",
+          "18.198.95.233/32"
+        ]
       },
       "MoveQStashToTeam200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "UpdateQStashBudget200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "EnableQStashProdPack200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "DisableQStashProdPack200ResponseSchema": {
-        "type": "string"
+        "type": "string",
+        "example": "OK"
       },
       "DatabaseInsightsMetricsProperty": {
         "type": "object",
@@ -5476,7 +5948,6 @@
           "global"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The region where database is hosted",
         "example": "global",
         "x-ms-enum": {
@@ -5497,7 +5968,6 @@
           "passive"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "State of database",
         "example": "active",
         "x-ms-enum": {
@@ -5527,7 +5997,6 @@
           "paid"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Payment plan of the database",
         "example": "paid",
         "x-ms-enum": {
@@ -5575,7 +6044,6 @@
           "asia-northeast1"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Primary region of the database cluster",
         "example": "us-east-1",
         "x-ms-enum": {
@@ -5667,7 +6135,6 @@
           "3XL"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Resource allocation tier",
         "example": "L",
         "x-ms-enum": {
@@ -5696,7 +6163,6 @@
           "pebble"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Database storage engine type",
         "example": "pebble",
         "x-ms-enum": {
@@ -5724,7 +6190,6 @@
           "false"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Access Control List enabled status",
         "example": "false",
         "x-ms-enum": {
@@ -5748,7 +6213,6 @@
           "false"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Default user access status in ACL",
         "example": "true",
         "x-ms-enum": {
@@ -5772,7 +6236,6 @@
           "false"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Prometheus integration enabled status",
         "example": "false",
         "x-ms-enum": {
@@ -5796,7 +6259,6 @@
           "gcp"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Desired cloud platform for the database.",
         "example": "aws",
         "x-ms-enum": {
@@ -5836,7 +6298,6 @@
           "asia-northeast1"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Primary Region of the Global Database",
         "example": "us-east-1",
         "x-ms-enum": {
@@ -5935,7 +6396,6 @@
           "ap-southeast-2"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "CreateDatabaseRequestReadRegionsItem",
           "modelAsString": false,
@@ -6008,7 +6468,6 @@
           "fixed_500gb"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Specifies the fixed plan type for the database.\nIf omitted, the database defaults to either the pay-as-you-go or free plan, based on the account type.\n",
         "example": "payg",
         "x-ms-enum": {
@@ -6067,7 +6526,6 @@
           "fixed_500gb"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The new plan for the database",
         "example": "fixed_1gb",
         "x-ms-enum": {
@@ -6120,7 +6578,6 @@
           "replica"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "InsightGroupKind",
           "modelAsString": false,
@@ -6147,7 +6604,6 @@
           "failed"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "State of the backup",
         "example": "pending",
         "x-ms-enum": {
@@ -6175,7 +6631,6 @@
           "false"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Daily backup status",
         "example": "false",
         "x-ms-enum": {
@@ -6199,7 +6654,6 @@
           "false"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Hourly backup status",
         "example": "false",
         "x-ms-enum": {
@@ -6225,7 +6679,6 @@
           "finance"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Role of the team member",
         "example": "dev",
         "x-ms-enum": {
@@ -6258,7 +6711,6 @@
           "finance"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Role of the new team member",
         "example": "dev",
         "x-ms-enum": {
@@ -6287,7 +6739,6 @@
           "DOT_PRODUCT"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Similarity function that\u0027s used to calculate the distance between two vectors",
         "example": "COSINE",
         "x-ms-enum": {
@@ -6317,7 +6768,6 @@
           "BGE_M3"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The predefined embedding model to vectorize your plain text",
         "example": "BGE_SMALL_EN_V1_5",
         "x-ms-enum": {
@@ -6349,7 +6799,6 @@
           "BGE_M3"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The sparse embedding model to be used for indexes",
         "example": "BM25",
         "x-ms-enum": {
@@ -6374,7 +6823,6 @@
           "fixed"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The payment plan of the index",
         "example": "fixed",
         "x-ms-enum": {
@@ -6403,7 +6851,6 @@
           "us-central1"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The region where the index is currently deployed",
         "example": "us-east-1",
         "x-ms-enum": {
@@ -6432,7 +6879,6 @@
           "HYBRID"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The type of the vector index",
         "example": "DENSE",
         "x-ms-enum": {
@@ -6461,7 +6907,6 @@
           "fixed"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The payment plan of the index",
         "example": "payg",
         "x-ms-enum": {
@@ -6489,7 +6934,6 @@
           "us-central1"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The region where the index is currently deployed",
         "example": "us-central1",
         "x-ms-enum": {
@@ -6513,7 +6957,6 @@
           "false"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Whether Prometheus metrics export is enabled (\u0060\u0022true\u0022\u0060 / \u0060\u0022false\u0022\u0060 string as returned by the API)",
         "example": "false",
         "x-ms-enum": {
@@ -6537,7 +6980,6 @@
           "paid"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Account billing plan category",
         "example": "free",
         "x-ms-enum": {
@@ -6561,7 +7003,6 @@
           "us-east-1"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Region where the QStash instance is deployed",
         "example": "eu-central-1",
         "x-ms-enum": {
@@ -6586,7 +7027,6 @@
           "us-central1"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Region of the database",
         "example": "us-east-1",
         "x-ms-enum": {
@@ -6615,7 +7055,6 @@
           "DOT_PRODUCT"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Similarity function that\u0027s used to calculate the distance between two vectors",
         "example": "COSINE",
         "x-ms-enum": {
@@ -6644,7 +7083,6 @@
           "paid"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The payment plan of your index",
         "example": "payg",
         "x-ms-enum": {
@@ -6674,7 +7112,6 @@
           "BGE_M3"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The embedding model to use for the index",
         "example": "BGE_M3",
         "x-ms-enum": {
@@ -6707,7 +7144,6 @@
           "HYBRID"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The type of the vector index",
         "example": "HYBRID",
         "x-ms-enum": {
@@ -6735,7 +7171,6 @@
           "BGE_M3"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The sparse embedding model to be used for indexes",
         "example": "BM25",
         "x-ms-enum": {
@@ -6770,7 +7205,6 @@
           "ap-southeast-2"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "UpdateRegionsRequestReadRegionsItem",
           "modelAsString": false,
@@ -6837,7 +7271,6 @@
           "fixed"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "The new plan for the index",
         "x-ms-enum": {
           "name": "SetIndexPlanRequestTargetPlan",
@@ -6864,7 +7297,6 @@
           "us-central1"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Region of the index",
         "example": "eu-west-1",
         "x-ms-enum": {
@@ -6889,7 +7321,6 @@
           "fixed"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Index payment type. Currently \u0027free\u0027 and \u0027payg\u0027 are available.",
         "example": "payg",
         "x-ms-enum": {
@@ -6919,7 +7350,6 @@
           "qstash_fixed_100m"
         ],
         "type": "string",
-        "additionalProperties": false,
         "description": "Target plan to upgrade to",
         "example": "paid",
         "x-ms-enum": {
@@ -6950,7 +7380,6 @@
           "region"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "RegionBy",
           "modelAsString": false,
@@ -6973,7 +7402,6 @@
           "30d"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "GetVectorIndexStatsPeriodParameter",
           "modelAsString": false,
@@ -7020,7 +7448,6 @@
           "30d"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "GetSearchIndexStatsPeriodParameter",
           "modelAsString": false,
@@ -7067,7 +7494,6 @@
           "30d"
         ],
         "type": "string",
-        "additionalProperties": false,
         "x-ms-enum": {
           "name": "GetQStashStatsPeriodParameter",
           "modelAsString": false,
