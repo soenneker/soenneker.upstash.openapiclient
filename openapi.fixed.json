@@ -3933,8 +3933,8 @@
           "ip": {
             "type": "string",
             "description": "The IP address from which the request originated",
-            "format": "ipv4",
-            "example": "1.2.3.4"
+            "example": "1.2.3.4",
+            "x-client-original-format": "ipv4"
           },
           "ttl": {
             "type": "integer",
@@ -5045,39 +5045,6 @@
           }
         }
       },
-      "ApiResponse": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "type": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        },
-        "xml": {
-          "name": "##default"
-        }
-      },
-      "Error": {
-        "required": [
-          "code",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      },
       "DatabaseSecurityAddons": {
         "type": "object",
         "properties": {
@@ -5116,37 +5083,6 @@
             "type": "number"
           }
         }
-      },
-      "DatabaseInsightsMetrics": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/DatabaseInsightsMetricsAdditionalPropertiesProperty"
-        },
-        "description": "Metric name to group key to data points. The all group is always present; region groups are added with by=region. Metrics: latency_p50, latency_p90, latency_p99, read_latency_99, write_latency_99, command_latency_99, replication_latency_999, wait_latency_99, lua_latency_p50, lua_latency_99, expired_entries (per minute), replication_lag (entries), throughput, bandwidth (bytes per second) and diskusage."
-      },
-      "DatabaseInsightsComparison": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/DatabaseInsightsComparisonAdditionalPropertiesProperty"
-        },
-        "description": "Metric name to group key to the mean over the latest window and over the equal window right before it. previous is absent when that earlier window has no data."
-      },
-      "DatabaseInsightsCounters": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/DatabaseInsightsCountersAdditionalProperties"
-        },
-        "description": "Growth of each counter over the period, for the whole database: over_size_requests (TCP and REST), over_size_record_accesses, throttled_commands (writes delayed by persistence backpressure), undeliverable (requests and connections the proxies could not hand to any replica), auth_failures (TCP and REST, including commands sent before authenticating and REST requests over the rate limit), keyspace_notifications, connections_opened, bandwidth_ingress, bandwidth_egress (bytes), rest_commands, lua_executions, lua_commands (commands run inside scripts), lua_failures, lua_timeouts and lua_memory_limits."
-      },
-      "DatabaseInsightsAnomalies": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "array",
-          "items": {
-            "$ref": "#/components/schemas/InsightAnomaly"
-          }
-        },
-        "description": "Metric name to up to three anomalies of its all series, largest first: stretches where the value stayed above both the period\u0027s median plus three standard deviations, estimated as 1.4826 times the median absolute deviation, and 30% over the median. A series with fewer than 8 points after its first positive value reports none. The median is raised to a small per-metric floor, so a nearly idle series does not report huge changes. An empty stretch at the start of the series is ignored, and a stretch longer than a third of the analyzed points is a level change, not an anomaly. Every metric is present; diskusage is never checked and always has an empty list."
       },
       "DatabaseTrafficTelemetry": {
         "type": "object",
@@ -5199,10 +5135,6 @@
         },
         "description": "Command counts over the period, absent when the database saw none"
       },
-      "BackupAnalysisReport": {
-        "type": "object",
-        "description": "The analysis report, present when completed. Contains totals, per-type size and element-count distributions, the biggest keys overall and per type, and a TTL profile."
-      },
       "QStashUserEnterprise": {
         "type": "object",
         "properties": {
@@ -5237,21 +5169,6 @@
             "description": "Number of workflow runs for this day",
             "example": 0
           }
-        }
-      },
-      "DatabaseInsightsMetricsAdditionalProperties": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "array",
-          "items": {
-            "$ref": "#/components/schemas/InsightPoint"
-          }
-        }
-      },
-      "DatabaseInsightsComparisonAdditionalProperties": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/DatabaseInsightsComparisonAdditionalPropertiesAdditionalProperties"
         }
       },
       "DatabaseInsightsCountersAdditionalProperties": {
@@ -5299,16 +5216,6 @@
           }
         }
       },
-      "ListDatabases200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Database"
-        }
-      },
-      "DeleteDatabase200Response": {
-        "type": "string",
-        "example": "OK"
-      },
       "RenameDatabaseRequest": {
         "required": [
           "name"
@@ -5321,26 +5228,6 @@
           }
         }
       },
-      "EnableEviction200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "DisableEviction200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "EnableAutoUpgrade200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "DisableAutoUpgrade200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "ChangePlan200Response": {
-        "type": "string",
-        "example": "OK"
-      },
       "UpdateBudgetRequest": {
         "required": [
           "budget"
@@ -5352,10 +5239,6 @@
             "description": "The new monthly budget for the database"
           }
         }
-      },
-      "UpdateBudget200Response": {
-        "type": "string",
-        "example": "OK"
       },
       "UpdateRegionsRequest": {
         "required": [
@@ -5376,10 +5259,6 @@
           }
         }
       },
-      "UpdateRegions200Response": {
-        "type": "string",
-        "example": "OK"
-      },
       "MoveToTeamRequest": {
         "required": [
           "team_id",
@@ -5397,10 +5276,6 @@
           }
         }
       },
-      "MoveToTeam200Response": {
-        "type": "string",
-        "example": "OK"
-      },
       "AnalyzeBackup200Response": {
         "type": "object",
         "properties": {
@@ -5408,12 +5283,6 @@
             "type": "string",
             "example": "pending"
           }
-        }
-      },
-      "ListBackup200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Backup"
         }
       },
       "CreateBackupRequest": {
@@ -5428,14 +5297,6 @@
           }
         }
       },
-      "CreateBackup200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "DeleteBackup200Response": {
-        "type": "string",
-        "example": "OK"
-      },
       "RestoreBackupRequest": {
         "required": [
           "backup_id"
@@ -5447,54 +5308,6 @@
             "description": "ID of the backup to restore"
           }
         }
-      },
-      "RestoreBackup200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "EnableDailyBackup200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "DisableDailyBackup200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "ListTeams200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Team"
-        }
-      },
-      "ListAuditLogs200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/AuditLog"
-        }
-      },
-      "DeleteTeam200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "GetTeamMembers200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TeamMember"
-        }
-      },
-      "DeleteTeamMember200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "ListIndices200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/VectorIndex"
-        }
-      },
-      "DeleteIndex200Response": {
-        "type": "string",
-        "example": "OK"
       },
       "RenameIndexRequest": {
         "required": [
@@ -5508,14 +5321,6 @@
           }
         }
       },
-      "RenameIndex200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "ResetIndexPasswords200Response": {
-        "type": "string",
-        "example": "OK"
-      },
       "SetIndexPlanRequest": {
         "required": [
           "target_plan"
@@ -5526,10 +5331,6 @@
             "$ref": "#/components/schemas/SetIndexPlanRequestTargetPlan"
           }
         }
-      },
-      "SetIndexPlan200Response": {
-        "type": "string",
-        "example": "OK"
       },
       "TransferIndexRequest": {
         "required": [
@@ -5542,16 +5343,6 @@
             "description": "The team ID of the target team.",
             "example": "99a4c327-31f0-490f-a594-043ade84085a"
           }
-        }
-      },
-      "TransferIndex200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "ListSearchIndexes200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/SearchIndex"
         }
       },
       "CreateSearchIndexRequest": {
@@ -5575,14 +5366,6 @@
           }
         }
       },
-      "DeleteSearchIndex200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "ResetSearchPassword200Response": {
-        "type": "string",
-        "example": "OK"
-      },
       "TransferSearchIndexRequest": {
         "required": [
           "target_account"
@@ -5595,10 +5378,6 @@
             "example": "99a4c327-31f0-490f-a594-043ade84085a"
           }
         }
-      },
-      "TransferSearchIndex200Response": {
-        "type": "string",
-        "example": "OK"
       },
       "RenameSearchIndexRequest": {
         "required": [
@@ -5613,16 +5392,6 @@
           }
         }
       },
-      "RenameSearchIndex200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "ListQStashUsers200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/QStashUser"
-        }
-      },
       "SetQStashPlanRequest": {
         "required": [
           "plan_name"
@@ -5633,20 +5402,6 @@
             "$ref": "#/components/schemas/SetQStashPlanRequestPlanName"
           }
         }
-      },
-      "SetQStashPlan200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "GetQStashIPv4200Response": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "example": [
-          "3.125.136.186/32",
-          "18.198.95.233/32"
-        ]
       },
       "MoveQStashToTeamRequest": {
         "required": [
@@ -5665,10 +5420,6 @@
           }
         }
       },
-      "MoveQStashToTeam200Response": {
-        "type": "string",
-        "example": "OK"
-      },
       "UpdateQStashBudgetRequest": {
         "required": [
           "budget"
@@ -5683,22 +5434,6 @@
             "example": 100
           }
         }
-      },
-      "UpdateQStashBudget200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "EnableQStashProdPack200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "DisableQStashProdPack200Response": {
-        "type": "string",
-        "example": "OK"
-      },
-      "ExamplePayload": {
-        "type": "object",
-        "description": "Placeholder schema for path example refs"
       },
       "ListDatabases200ResponseSchema": {
         "type": "array",
@@ -5912,21 +5647,6 @@
       "BackupAnalysisReportProperty": {
         "type": "object",
         "description": "The analysis report, present when completed. Contains totals, per-type size and element-count distributions, the biggest keys overall and per type, and a TTL profile."
-      },
-      "DatabaseInsightsMetricsAdditionalPropertiesProperty": {
-        "type": "object",
-        "additionalProperties": {
-          "type": "array",
-          "items": {
-            "$ref": "#/components/schemas/InsightPoint"
-          }
-        }
-      },
-      "DatabaseInsightsComparisonAdditionalPropertiesProperty": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/DatabaseInsightsComparisonAdditionalPropertiesAdditionalProperties"
-        }
       },
       "DatabaseInsightsMetricsPropertyAdditionalProperties": {
         "type": "object",
@@ -7582,5 +7302,287 @@
   "externalDocs": {
     "description": "Find out more about Upstash",
     "url": "https://upstash.com/"
+  },
+  "x-client-unused-schemas": {
+    "ApiResponse": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "type": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      },
+      "xml": {
+        "name": "##default"
+      }
+    },
+    "Error": {
+      "required": [
+        "code",
+        "message"
+      ],
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "DatabaseInsightsMetrics": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/DatabaseInsightsMetricsAdditionalPropertiesProperty"
+      },
+      "description": "Metric name to group key to data points. The all group is always present; region groups are added with by=region. Metrics: latency_p50, latency_p90, latency_p99, read_latency_99, write_latency_99, command_latency_99, replication_latency_999, wait_latency_99, lua_latency_p50, lua_latency_99, expired_entries (per minute), replication_lag (entries), throughput, bandwidth (bytes per second) and diskusage."
+    },
+    "DatabaseInsightsComparison": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/DatabaseInsightsComparisonAdditionalPropertiesProperty"
+      },
+      "description": "Metric name to group key to the mean over the latest window and over the equal window right before it. previous is absent when that earlier window has no data."
+    },
+    "DatabaseInsightsCounters": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/DatabaseInsightsCountersAdditionalProperties"
+      },
+      "description": "Growth of each counter over the period, for the whole database: over_size_requests (TCP and REST), over_size_record_accesses, throttled_commands (writes delayed by persistence backpressure), undeliverable (requests and connections the proxies could not hand to any replica), auth_failures (TCP and REST, including commands sent before authenticating and REST requests over the rate limit), keyspace_notifications, connections_opened, bandwidth_ingress, bandwidth_egress (bytes), rest_commands, lua_executions, lua_commands (commands run inside scripts), lua_failures, lua_timeouts and lua_memory_limits."
+    },
+    "DatabaseInsightsAnomalies": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/InsightAnomaly"
+        }
+      },
+      "description": "Metric name to up to three anomalies of its all series, largest first: stretches where the value stayed above both the period\u0027s median plus three standard deviations, estimated as 1.4826 times the median absolute deviation, and 30% over the median. A series with fewer than 8 points after its first positive value reports none. The median is raised to a small per-metric floor, so a nearly idle series does not report huge changes. An empty stretch at the start of the series is ignored, and a stretch longer than a third of the analyzed points is a level change, not an anomaly. Every metric is present; diskusage is never checked and always has an empty list."
+    },
+    "BackupAnalysisReport": {
+      "type": "object",
+      "description": "The analysis report, present when completed. Contains totals, per-type size and element-count distributions, the biggest keys overall and per type, and a TTL profile."
+    },
+    "DatabaseInsightsMetricsAdditionalProperties": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/InsightPoint"
+        }
+      }
+    },
+    "DatabaseInsightsComparisonAdditionalProperties": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/DatabaseInsightsComparisonAdditionalPropertiesAdditionalProperties"
+      }
+    },
+    "ListDatabases200Response": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Database"
+      }
+    },
+    "DeleteDatabase200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "EnableEviction200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "DisableEviction200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "EnableAutoUpgrade200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "DisableAutoUpgrade200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ChangePlan200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "UpdateBudget200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "UpdateRegions200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "MoveToTeam200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ListBackup200Response": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Backup"
+      }
+    },
+    "CreateBackup200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "DeleteBackup200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "RestoreBackup200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "EnableDailyBackup200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "DisableDailyBackup200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ListTeams200Response": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Team"
+      }
+    },
+    "ListAuditLogs200Response": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AuditLog"
+      }
+    },
+    "DeleteTeam200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "GetTeamMembers200Response": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TeamMember"
+      }
+    },
+    "DeleteTeamMember200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ListIndices200Response": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VectorIndex"
+      }
+    },
+    "DeleteIndex200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "RenameIndex200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ResetIndexPasswords200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "SetIndexPlan200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "TransferIndex200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ListSearchIndexes200Response": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/SearchIndex"
+      }
+    },
+    "DeleteSearchIndex200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ResetSearchPassword200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "TransferSearchIndex200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "RenameSearchIndex200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ListQStashUsers200Response": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/QStashUser"
+      }
+    },
+    "SetQStashPlan200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "GetQStashIPv4200Response": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": [
+        "3.125.136.186/32",
+        "18.198.95.233/32"
+      ]
+    },
+    "MoveQStashToTeam200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "UpdateQStashBudget200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "EnableQStashProdPack200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "DisableQStashProdPack200Response": {
+      "type": "string",
+      "example": "OK"
+    },
+    "ExamplePayload": {
+      "type": "object",
+      "description": "Placeholder schema for path example refs"
+    },
+    "DatabaseInsightsMetricsAdditionalPropertiesProperty": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/InsightPoint"
+        }
+      }
+    },
+    "DatabaseInsightsComparisonAdditionalPropertiesProperty": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/DatabaseInsightsComparisonAdditionalPropertiesAdditionalProperties"
+      }
+    }
   }
 }
