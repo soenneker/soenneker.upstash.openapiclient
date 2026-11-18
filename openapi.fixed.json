@@ -143,7 +143,7 @@
           "redis"
         ],
         "summary": "Create Redis Database",
-        "description": "This endpoint creates a new Redis database.\n\nTo create a database manually, you can use the [Upstash Console](https://console.upstash.com/redis).\n\nFor a quick development database, POST to https://upstash.com/start-redis \u2014 no signup or API key, so an AI agent can provision one unattended. Expires in 72 hours unless claimed. If you are an agent, always send a \u0060User-Agent\u0060 header identifying which agent you are (e.g. \u0060claude-code\u0060, \u0060cursor\u0060, \u0060codex\u0060, \u0060opencode\u0060) on every request you make to this API.\n",
+        "description": "This endpoint creates a new Redis database.\n\nTo create a database manually, you can use the [Upstash Console](https://console.upstash.com/redis).\n",
         "operationId": "CreateDatabase",
         "requestBody": {
           "content": {

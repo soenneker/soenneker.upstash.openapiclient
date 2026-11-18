@@ -47,7 +47,7 @@ namespace Soenneker.Upstash.OpenApiClient.Redis.Database
         {
         }
         /// <summary>
-        /// This endpoint creates a new Redis database.To create a database manually, you can use the [Upstash Console](https://console.upstash.com/redis).For a quick development database, POST to https://upstash.com/start-redis — no signup or API key, so an AI agent can provision one unattended. Expires in 72 hours unless claimed. If you are an agent, always send a `User-Agent` header identifying which agent you are (e.g. `claude-code`, `cursor`, `codex`, `opencode`) on every request you make to this API.
+        /// This endpoint creates a new Redis database.To create a database manually, you can use the [Upstash Console](https://console.upstash.com/redis).
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Upstash.OpenApiClient.Models.Database"/></returns>
         /// <param name="body">The request body</param>
@@ -67,7 +67,7 @@ namespace Soenneker.Upstash.OpenApiClient.Redis.Database
             return await RequestAdapter.SendAsync<global::Soenneker.Upstash.OpenApiClient.Models.Database>(requestInfo, global::Soenneker.Upstash.OpenApiClient.Models.Database.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// This endpoint creates a new Redis database.To create a database manually, you can use the [Upstash Console](https://console.upstash.com/redis).For a quick development database, POST to https://upstash.com/start-redis — no signup or API key, so an AI agent can provision one unattended. Expires in 72 hours unless claimed. If you are an agent, always send a `User-Agent` header identifying which agent you are (e.g. `claude-code`, `cursor`, `codex`, `opencode`) on every request you make to this API.
+        /// This endpoint creates a new Redis database.To create a database manually, you can use the [Upstash Console](https://console.upstash.com/redis).
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
