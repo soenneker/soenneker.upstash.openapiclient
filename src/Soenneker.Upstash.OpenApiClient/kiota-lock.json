@@ -2,7 +2,7 @@
   "descriptionHash": "0FCD1A9BA9CFF1F25041CA7FCCB4E768E3F321742C4DEFFBCD11BEA0EB9513E92DC4546D731700F7A0FB32FC1B6FA2BEF37DA7F9BA750C6D17740F902399B535",
   "descriptionLocation": "../../openapi.fixed.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.38.0",
+  "kiotaVersion": "1.39.0",
   "clientClassName": "UpstashOpenApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "Soenneker.Upstash.OpenApiClient",
