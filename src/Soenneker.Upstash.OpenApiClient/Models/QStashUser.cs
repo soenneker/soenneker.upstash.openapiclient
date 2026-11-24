@@ -46,6 +46,8 @@ namespace Soenneker.Upstash.OpenApiClient.Models
 #else
         public global::Soenneker.Upstash.OpenApiClient.Models.QStashUserEnterprise Enterprise { get; set; }
 #endif
+        /// <summary>Whether a next token pair has been created and not rolled yet. See [Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token).</summary>
+        public bool? HasNextToken { get; set; }
         /// <summary>Unique identifier for the QStash user account</summary>
         public Guid? Id { get; set; }
         /// <summary>Unix timestamp of the last plan upgrade</summary>
@@ -166,6 +168,7 @@ namespace Soenneker.Upstash.OpenApiClient.Models
                 { "customer_id", n => { CustomerId = n.GetStringValue(); } },
                 { "deletion_time", n => { DeletionTime = n.GetLongValue(); } },
                 { "enterprise", n => { Enterprise = n.GetObjectValue<global::Soenneker.Upstash.OpenApiClient.Models.QStashUserEnterprise>(global::Soenneker.Upstash.OpenApiClient.Models.QStashUserEnterprise.CreateFromDiscriminatorValue); } },
+                { "has_next_token", n => { HasNextToken = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetGuidValue(); } },
                 { "last_plan_upgrade_time", n => { LastPlanUpgradeTime = n.GetLongValue(); } },
                 { "max_bandwidth_per_second", n => { MaxBandwidthPerSecond = n.GetLongValue(); } },
@@ -211,6 +214,7 @@ namespace Soenneker.Upstash.OpenApiClient.Models
             writer.WriteStringValue("customer_id", CustomerId);
             writer.WriteLongValue("deletion_time", DeletionTime);
             writer.WriteObjectValue<global::Soenneker.Upstash.OpenApiClient.Models.QStashUserEnterprise>("enterprise", Enterprise);
+            writer.WriteBoolValue("has_next_token", HasNextToken);
             writer.WriteGuidValue("id", Id);
             writer.WriteLongValue("last_plan_upgrade_time", LastPlanUpgradeTime);
             writer.WriteLongValue("max_bandwidth_per_second", MaxBandwidthPerSecond);

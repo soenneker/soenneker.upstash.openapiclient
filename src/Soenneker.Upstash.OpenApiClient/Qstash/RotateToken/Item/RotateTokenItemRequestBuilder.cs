@@ -34,7 +34,7 @@ namespace Soenneker.Upstash.OpenApiClient.Qstash.RotateToken.Item
         {
         }
         /// <summary>
-        /// Resets the authentication credentials for the QStash user account.This invalidates the old password and token, and generates new ones.Returns the updated user information with new credentials.
+        /// Immediately replaces the token and read-only token of the QStash user account.The old tokens stop working right away, and any next token from[Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token) is discarded.Returns the updated user information with the new tokens.To switch tokens without downtime, use[Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token) and[Roll QStash Token](/api-reference/qstash/roll-qstash-token) instead.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.Upstash.OpenApiClient.Models.QStashUser"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.Upstash.OpenApiClient.Qstash.RotateToken.Item
             return await RequestAdapter.SendAsync<global::Soenneker.Upstash.OpenApiClient.Models.QStashUser>(requestInfo, global::Soenneker.Upstash.OpenApiClient.Models.QStashUser.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Resets the authentication credentials for the QStash user account.This invalidates the old password and token, and generates new ones.Returns the updated user information with new credentials.
+        /// Immediately replaces the token and read-only token of the QStash user account.The old tokens stop working right away, and any next token from[Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token) is discarded.Returns the updated user information with the new tokens.To switch tokens without downtime, use[Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token) and[Roll QStash Token](/api-reference/qstash/roll-qstash-token) instead.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

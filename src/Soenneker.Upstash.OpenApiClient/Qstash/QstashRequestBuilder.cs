@@ -6,6 +6,8 @@ using Soenneker.Upstash.OpenApiClient.Qstash.DisableProdpack;
 using Soenneker.Upstash.OpenApiClient.Qstash.EnableProdpack;
 using Soenneker.Upstash.OpenApiClient.Qstash.Ipv4;
 using Soenneker.Upstash.OpenApiClient.Qstash.MoveToTeam;
+using Soenneker.Upstash.OpenApiClient.Qstash.NextToken;
+using Soenneker.Upstash.OpenApiClient.Qstash.RollToken;
 using Soenneker.Upstash.OpenApiClient.Qstash.RotateToken;
 using Soenneker.Upstash.OpenApiClient.Qstash.SetPlan;
 using Soenneker.Upstash.OpenApiClient.Qstash.Stats;
@@ -43,6 +45,16 @@ namespace Soenneker.Upstash.OpenApiClient.Qstash
         public global::Soenneker.Upstash.OpenApiClient.Qstash.MoveToTeam.MoveToTeamRequestBuilder MoveToTeam
         {
             get => new global::Soenneker.Upstash.OpenApiClient.Qstash.MoveToTeam.MoveToTeamRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The nextToken property</summary>
+        public global::Soenneker.Upstash.OpenApiClient.Qstash.NextToken.NextTokenRequestBuilder NextToken
+        {
+            get => new global::Soenneker.Upstash.OpenApiClient.Qstash.NextToken.NextTokenRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The rollToken property</summary>
+        public global::Soenneker.Upstash.OpenApiClient.Qstash.RollToken.RollTokenRequestBuilder RollToken
+        {
+            get => new global::Soenneker.Upstash.OpenApiClient.Qstash.RollToken.RollTokenRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The rotateToken property</summary>
         public global::Soenneker.Upstash.OpenApiClient.Qstash.RotateToken.RotateTokenRequestBuilder RotateToken

@@ -2302,7 +2302,7 @@
           "qstash"
         ],
         "summary": "Reset QStash Token",
-        "description": "Resets the authentication credentials for the QStash user account.\nThis invalidates the old password and token, and generates new ones.\nReturns the updated user information with new credentials.\n",
+        "description": "Immediately replaces the token and read-only token of the QStash user account.\nThe old tokens stop working right away, and any next token from\n[Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token) is discarded.\nReturns the updated user information with the new tokens.\n\nTo switch tokens without downtime, use\n[Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token) and\n[Roll QStash Token](/api-reference/qstash/roll-qstash-token) instead.\n",
         "operationId": "ResetQStashToken",
         "parameters": [
           {
@@ -2322,6 +2322,142 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/QStashUser"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/next-token/{id}": {
+      "post": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Get the Next QStash Token",
+        "description": "Returns the next token and next read-only token of the QStash user account,\ncreating them if they do not exist yet. Both the current and the next tokens\nare accepted, so you can update your applications with the next token\nwithout downtime, then call [Roll QStash Token](/api-reference/qstash/roll-qstash-token).\n\nCalling this endpoint again returns the same pair until the token is rolled.\nFor a QStash account created through the Vercel Marketplace, the next token is\nalso written to the Vercel project\u0027s \u0060QSTASH_TOKEN\u0060; redeploy the project before rolling.\n",
+        "operationId": "GetQStashNextToken",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The next token pair",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QStashNextToken"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request was refused: the account is in the middle of another change,\nyour team role does not allow it, or the next token could not be written to Vercel.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetQStashNextToken400ResponseSchemaError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "QStash user not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetQStashNextToken404ResponseSchemaError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/qstash/roll-token/{id}": {
+      "post": {
+        "tags": [
+          "qstash"
+        ],
+        "summary": "Roll QStash Token",
+        "description": "Makes the next token pair from [Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token)\nthe current one. The old token and read-only token stop working.\nThe next call to Get the Next QStash Token creates a new pair.\n\n\u0060next_token_hash\u0060 must match the next token (or next read-only token) you deployed.\nIf it does not, the request is rejected with \u0060409\u0060, so a repeated or stale call\ncannot retire the token you just moved to.\n",
+        "operationId": "RollQStashToken",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "QStash user ID",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RollQStashTokenRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Token rolled, returns updated user information with the new tokens",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QStashUser"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The roll was refused: \u0060next_token_hash\u0060 is missing, there is no next token to roll to\n(call Get the Next QStash Token first), the account is in the middle of another change,\nor your team role does not allow it.\n",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RollQStashToken400ResponseSchemaError"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "QStash user not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RollQStashToken404ResponseSchemaError"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "\u0060next_token_hash\u0060 does not match the current next token. Get the next token again; do not retry with the same hash.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RollQStashToken409ResponseSchemaError"
                 }
               }
             }
@@ -4640,6 +4776,27 @@
           }
         }
       },
+      "QStashNextToken": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the QStash user account",
+            "format": "uuid",
+            "example": "99a4c327-31f0-490f-a594-043ade84085a"
+          },
+          "next_token": {
+            "type": "string",
+            "description": "The next token. It is accepted alongside the current token until the token is rolled.",
+            "example": "ZXhhbXBsZUB1cHN0YXNoLmNvbTpuZXh0"
+          },
+          "next_read_only_token": {
+            "type": "string",
+            "description": "The next read-only token",
+            "example": "ZXhhbXBsZUB1cHN0YXNoLmNvbTpuZXh0cm8="
+          }
+        }
+      },
       "QStashUser": {
         "type": "object",
         "properties": {
@@ -4663,6 +4820,11 @@
             "type": "string",
             "description": "Read-only authentication token for QStash operations",
             "example": "ZXhhbXBsZUB1cHN0YXNoLmNvbTpuYWJlcg=="
+          },
+          "has_next_token": {
+            "type": "boolean",
+            "description": "Whether a next token pair has been created and not rolled yet. See [Get the Next QStash Token](/api-reference/qstash/get-the-next-qstash-token).",
+            "example": false
           },
           "active": {
             "type": "boolean",
@@ -5392,6 +5554,19 @@
           }
         }
       },
+      "RollQStashTokenRequest": {
+        "required": [
+          "next_token_hash"
+        ],
+        "type": "object",
+        "properties": {
+          "next_token_hash": {
+            "type": "string",
+            "description": "Hex-encoded SHA-256 hash of the next token or the next read-only token",
+            "example": "3a6eb0790f39ac87c94f3856b2dd2c5d110e6811602261a9a923d3bb23adc8b7"
+          }
+        }
+      },
       "SetQStashPlanRequest": {
         "required": [
           "plan_name"
@@ -5582,6 +5757,26 @@
         "items": {
           "$ref": "#/components/schemas/QStashUser"
         }
+      },
+      "GetQStashNextToken400ResponseSchema": {
+        "type": "string",
+        "example": "You are not allowed to do this operation"
+      },
+      "GetQStashNextToken404ResponseSchema": {
+        "type": "string",
+        "example": "QStash user not found"
+      },
+      "RollQStashToken400ResponseSchema": {
+        "type": "string",
+        "example": "QStash user has no next token, get it from /v2/qstash/next-token before rolling"
+      },
+      "RollQStashToken404ResponseSchema": {
+        "type": "string",
+        "example": "QStash user not found"
+      },
+      "RollQStashToken409ResponseSchema": {
+        "type": "string",
+        "example": "Your next QStash token has changed since it was shown, so your token was not rolled. Get the next token again before rolling."
       },
       "SetQStashPlan200ResponseSchema": {
         "type": "string",
@@ -7248,6 +7443,81 @@
             }
           ]
         }
+      },
+      "GetQStashNextToken400ResponseSchemaError": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "x-client-untyped-value": true
+          }
+        },
+        "x-client-raw-error-media-type": "application/json",
+        "x-client-raw-error-schema": {
+          "$ref": "#/components/schemas/GetQStashNextToken400ResponseSchema"
+        },
+        "x-client-original-error-schema": {
+          "$ref": "#/components/schemas/GetQStashNextToken400ResponseSchema"
+        }
+      },
+      "GetQStashNextToken404ResponseSchemaError": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "x-client-untyped-value": true
+          }
+        },
+        "x-client-raw-error-media-type": "application/json",
+        "x-client-raw-error-schema": {
+          "$ref": "#/components/schemas/GetQStashNextToken404ResponseSchema"
+        },
+        "x-client-original-error-schema": {
+          "$ref": "#/components/schemas/GetQStashNextToken404ResponseSchema"
+        }
+      },
+      "RollQStashToken400ResponseSchemaError": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "x-client-untyped-value": true
+          }
+        },
+        "x-client-raw-error-media-type": "application/json",
+        "x-client-raw-error-schema": {
+          "$ref": "#/components/schemas/RollQStashToken400ResponseSchema"
+        },
+        "x-client-original-error-schema": {
+          "$ref": "#/components/schemas/RollQStashToken400ResponseSchema"
+        }
+      },
+      "RollQStashToken404ResponseSchemaError": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "x-client-untyped-value": true
+          }
+        },
+        "x-client-raw-error-media-type": "application/json",
+        "x-client-raw-error-schema": {
+          "$ref": "#/components/schemas/RollQStashToken404ResponseSchema"
+        },
+        "x-client-original-error-schema": {
+          "$ref": "#/components/schemas/RollQStashToken404ResponseSchema"
+        }
+      },
+      "RollQStashToken409ResponseSchemaError": {
+        "type": "object",
+        "properties": {
+          "payload": {
+            "x-client-untyped-value": true
+          }
+        },
+        "x-client-raw-error-media-type": "application/json",
+        "x-client-raw-error-schema": {
+          "$ref": "#/components/schemas/RollQStashToken409ResponseSchema"
+        },
+        "x-client-original-error-schema": {
+          "$ref": "#/components/schemas/RollQStashToken409ResponseSchema"
+        }
       }
     },
     "securitySchemes": {
@@ -7534,6 +7804,26 @@
       "items": {
         "$ref": "#/components/schemas/QStashUser"
       }
+    },
+    "GetQStashNextToken400Response": {
+      "type": "string",
+      "example": "You are not allowed to do this operation"
+    },
+    "GetQStashNextToken404Response": {
+      "type": "string",
+      "example": "QStash user not found"
+    },
+    "RollQStashToken400Response": {
+      "type": "string",
+      "example": "QStash user has no next token, get it from /v2/qstash/next-token before rolling"
+    },
+    "RollQStashToken404Response": {
+      "type": "string",
+      "example": "QStash user not found"
+    },
+    "RollQStashToken409Response": {
+      "type": "string",
+      "example": "Your next QStash token has changed since it was shown, so your token was not rolled. Get the next token again before rolling."
     },
     "SetQStashPlan200Response": {
       "type": "string",
